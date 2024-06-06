@@ -1,0 +1,13 @@
+.primeraSnr {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1rem;
+}
+.opciones {
+    width: 85%;
+    /* border: 1px solid green; */
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    gap: 10px;
+}
