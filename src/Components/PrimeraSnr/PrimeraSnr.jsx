@@ -3,6 +3,7 @@ import './primerasnr.css'
 import { Button, Typography } from '@material-tailwind/react'
 import Select from 'react-select'
 import toast, { Toaster } from 'react-hot-toast'
+import ArticulosPrimera from '../ArticulosPrimera/ArticulosPrimera'
 
 export default function PrimeraSnr() {
 
@@ -139,6 +140,8 @@ export default function PrimeraSnr() {
                         >
                             copiar
                         </Button>
+
+                        <ArticulosPrimera />
                     </div>
 
                     

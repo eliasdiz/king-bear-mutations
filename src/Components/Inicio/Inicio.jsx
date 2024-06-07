@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './inicio.css'
 import { Typography } from '@material-tailwind/react'
 import Select from 'react-select'
@@ -6,7 +6,8 @@ import Primera from '../Primera/Primera'
 
 export default function Inicio() {
 
-    const tiposOptions = [{value:'primera',label:'primera'}]
+    const tiposMutacionOptions = ['primera','rect. gnral de datos'].sort().map(item => ({value: item, label: item}))
+    const [ tipoMutacion, setTipoMutacion ] = useState('')
 
     return (
     <div className='inicio'>
@@ -21,15 +22,20 @@ export default function Inicio() {
 
             <div className='flex justify-center w-full  p-2'>
                 <Select 
-                    className='w-[12rem] capitalize'
+                    className='w-[15rem] capitalize'
                     placeholder='tipo de mutacion'
-                    options={tiposOptions}
+                    options={tiposMutacionOptions}
                     isSearchable={false}
+                    isClearable
+                    onChange={(e) => setTipoMutacion(e ? e.value : '')}
                 />
             </div>
         </div>
         
-        <Primera />
+        {
+            tipoMutacion === 'primera' ? <Primera /> : null
+        }
+        
 
     </div>
     )

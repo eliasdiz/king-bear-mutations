@@ -1,12 +1,13 @@
 import React, { useRef, useState } from 'react'
-import './primerapropietario.css'
+import './primerapoder.css'
 import { Button, Typography } from '@material-tailwind/react'
 import Select from 'react-select'
 import toast, { Toaster } from 'react-hot-toast'
 import numeral from 'numeral'
 import ArticulosPrimera from '../ArticulosPrimera/ArticulosPrimera'
 
-export default function PrimeraPropietario() {
+
+export default function PrimeraPoder() {
 
     const [ nombre, setNombre ] = useState('')
     const optionsTipoDoc = ['cc', 'ti', 'ce'].map( item => ({value: item, label: item}))
@@ -63,7 +64,7 @@ export default function PrimeraPropietario() {
     };
 
     return (
-    <div className='primeraPropietario'>
+        <div className='primeraPoder'>
 
         <div className='w-[40%] flex justify-center items-center border border-gray-300'>
 
@@ -173,8 +174,8 @@ export default function PrimeraPropietario() {
                         Que el(la) señor(a) <span className='text-red-500 capitalize'>{nombre} </span>  
                         identificado(a) con <span className='text-red-500 uppercase'>{tipoDoc}</span>. 
                         NO. <span className='text-red-500'>{formatNumber(numDoc)}</span>,
-                        en su condición de propietario del inmueble con número 
-                        predial <span className='text-red-500'>{npn}</span>, inscrito en la base de datos catastral 
+                        en su condición de apoderado del propietario del inmueble identificado con número predial
+						<span className='text-red-500'>{npn}</span>, inscrito en la base de datos catastral 
                         del municipio de Montería, presentó ante la Oficina de atención al público una solicitud 
                         de trámite catastral, consistente en Cambio de propietario. soportada en los siguientes 
                         documentos justificativos: <span className='text-red-500 capitalize'>{fuenteAdmin} No.

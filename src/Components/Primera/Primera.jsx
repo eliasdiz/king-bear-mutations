@@ -3,6 +3,8 @@ import './primera.css'
 import Select from 'react-select'
 import PrimeraSnr from '../PrimeraSnr/PrimeraSnr'
 import PrimeraPropietario from '../PrimeraPropietario/PrimeraPropietario'
+import PrimeraAutorizado from '../PrimeraAutorizado/PrimeraAutorizado'
+import PrimeraPoder from '../PrimeraPoder/PrimeraPoder'
 
 
 export default function Primera() {
@@ -13,6 +15,8 @@ export default function Primera() {
     const handleSolicitante = (solicitante) => {
         if(solicitante === 'snr') return <PrimeraSnr />
         if(solicitante === 'propietario') return <PrimeraPropietario />
+        if(solicitante === 'autorizado') return <PrimeraAutorizado />
+        if(solicitante === 'con poder') return <PrimeraPoder />
     }
     
     return (
