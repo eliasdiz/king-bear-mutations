@@ -1,0 +1,7 @@
+.opciones-rectificacion-propietario {
+    /* border: 1px solid orange; */
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

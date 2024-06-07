@@ -3,11 +3,17 @@ import './inicio.css'
 import { Typography } from '@material-tailwind/react'
 import Select from 'react-select'
 import Primera from '../Primera/Primera'
+import Rectificacion from '../Rectificacion/Rectificacion'
 
 export default function Inicio() {
 
     const tiposMutacionOptions = ['primera','rect. gnral de datos'].sort().map(item => ({value: item, label: item}))
     const [ tipoMutacion, setTipoMutacion ] = useState('')
+
+    const pickMutacion = (tipo) => {
+        if(tipo === 'primera') return <Primera />
+        if(tipo === 'rect. gnral de datos') return <Rectificacion />
+    }
 
     return (
     <div className='inicio'>
@@ -33,7 +39,7 @@ export default function Inicio() {
         </div>
         
         {
-            tipoMutacion === 'primera' ? <Primera /> : null
+            pickMutacion(tipoMutacion)
         }
         
 

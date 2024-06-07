@@ -17,7 +17,7 @@ export default function ArticulosPrimera() {
         
         setTimeout(() => {
             setOpen(false)
-        }, 1500);
+        }, 1000);
     }
 
     return (

@@ -131,7 +131,7 @@ export default function PrimeraPoder() {
                         value={emisor ? emisor : ''}
                         className='h-[35px] w-[80%] capitalize border border-gray-500 rounded-md p-2'
                         placeholder='ente emisor'
-                        onChange={(e) => setEmisor(e.target.value)}
+                        onChange={(e) => setEmisor(e.target.value.toLocaleLowerCase())}
                     />
 
                     <input 

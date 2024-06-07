@@ -130,7 +130,7 @@ export default function PrimeraPropietario() {
                         value={emisor ? emisor : ''}
                         className='h-[35px] w-[80%] capitalize border border-gray-500 rounded-md p-2'
                         placeholder='ente emisor'
-                        onChange={(e) => setEmisor(e.target.value)}
+                        onChange={(e) => setEmisor(e.target.value.toLocaleLowerCase())}
                     />
 
                     <input 
@@ -180,7 +180,7 @@ export default function PrimeraPropietario() {
                         documentos justificativos: <span className='text-red-500 capitalize'>{fuenteAdmin} No.
                         {numFuenteAdmin}</span>  del <span className='text-red-500'>{fecha}</span> de (la) 
                         <span className='text-red-500 capitalize'> {emisor}</span>, 
-                        debidamente registrada en el folio de matrícula inmobiliaria <span className='text-red-500'>140 - {fmi}</span>.
+                        d ebidamente registrada en el folio de matrícula inmobiliaria <span className='text-red-500'>140 - {fmi}</span>.
                         </span>
                         <br/><br/>
                         <span>

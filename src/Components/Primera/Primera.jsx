@@ -9,7 +9,7 @@ import PrimeraPoder from '../PrimeraPoder/PrimeraPoder'
 
 export default function Primera() {
 
-    const solicitanteOptions = ['autorizado','con poder','propietario','snr'].map(item => ({value: item, label: item}))
+    const solicitanteOptions = ['autorizado','con poder','propietario','snr'].sort().map(item => ({value: item, label: item}))
     const [ solicintante, setSolicitante ] = useState('') 
 
     const handleSolicitante = (solicitante) => {
