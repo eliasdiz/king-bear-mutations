@@ -5,6 +5,7 @@ import Select from 'react-select'
 import toast, { Toaster } from 'react-hot-toast'
 import numeral from 'numeral'
 import ArticulosPrimera from '../ArticulosPrimera/ArticulosPrimera'
+import DocJustifica from '../DocJustifica/DocJustifica'
 
 export default function PrimeraPropietario() {
 
@@ -20,6 +21,8 @@ export default function PrimeraPropietario() {
     const [ emisor, setEmisor ] = useState('')
     const [ fmi, setFmi ] = useState('')
     const textoOk = useRef()
+    const [ docSelecc, setDocSelecc ] = useState([])
+
 
     // console.log(textoOk.current.innerText)
 
@@ -33,6 +36,8 @@ export default function PrimeraPropietario() {
         setFecha('')
         setEmisor('')
         setFmi('')
+        setDocSelecc([])
+
     }
 
     const handleCopiar = () => {
@@ -46,11 +51,12 @@ export default function PrimeraPropietario() {
             numFuenteAdmin: numFuenteAdmin,
             fecha: fecha,
             emisor: emisor,
-            fmi: fmi
+            fmi: fmi,
+            docSelecc: docSelecc
         } 
 
         for( let item in data){
-            if( data[item] === ''){
+            if( data[item] === '' || data[item].length === 0){
                 return toast.error(`debes ingresar ${item}`, {duration: 1000, style:{textTransform: 'capitalize'}})
             }
             }
@@ -89,7 +95,7 @@ export default function PrimeraPropietario() {
                             value={numDoc ? numDoc : ''}
                             placeholder='# documento'
                             type='number'
-                            className='h-[35px] w-[50%] capitalize border border-gray-500 rounded-md p-2'
+                            className='h-[35px] w-[50%] capitalize border border-gray-500 rounded-md p-2 text-center'
                             onChange={(e) => setNumDoc(e.target.value)}
                         />  
                     </div>
@@ -97,7 +103,7 @@ export default function PrimeraPropietario() {
                     <input 
                         value={npn ? npn : ''}
                         placeholder='NPN'
-                        className='h-[35px] w-[80%]  border border-gray-500 rounded-md p-2'
+                        className='h-[35px] w-[80%]  border border-gray-500 rounded-md p-2 text-center'
                         onChange={(e) => setNpn(e.target.value)}
                         />
                     
@@ -112,33 +118,39 @@ export default function PrimeraPropietario() {
                         />
                         <input 
                             value={numFuenteAdmin ? numFuenteAdmin : ''}
-                            className='h-[35px] w-[25%] uppercase  border border-gray-500 rounded-md p-2'
+                            className='h-[35px] w-[25%] uppercase  border border-gray-500 rounded-md p-2 text-center'
                             placeholder='N°'
                             onChange={(e) => setNumFuenteAdmin(e.target.value)}
                         />
                     </div>
 
-                    <input 
-                        value={fecha ? fecha : ''}
-                        className='w-[39%] h-[35px] uppercase  border border-gray-500 rounded-md p-2'
-                        label='fecha'
-                        type='date'
-                        onChange={(e) => setFecha(e.target.value)}
-                    />
+                    <div className='w-full flex gap-2'>
+                        <input 
+                            value={fecha ? fecha : ''}
+                            className='w-[35%] h-[35px] uppercase  border border-gray-500 rounded-md p-2'
+                            label='fecha'
+                            type='date'
+                            onChange={(e) => setFecha(e.target.value)}
+                        />
 
-                    <input 
-                        value={emisor ? emisor : ''}
-                        className='h-[35px] w-[80%] capitalize border border-gray-500 rounded-md p-2'
-                        placeholder='ente emisor'
-                        onChange={(e) => setEmisor(e.target.value.toLocaleLowerCase())}
-                    />
+                        <input 
+                            value={emisor ? emisor : ''}
+                            className='h-[35px] w-[65%] capitalize border border-gray-500 rounded-md p-2 text-center'
+                            placeholder='ente emisor'
+                            onChange={(e) => setEmisor(e.target.value.toLocaleLowerCase())}
+                        />
+                    </div>
 
-                    <input 
-                        value={fmi ? fmi : ''}
-                        className='h-[35px] w-[40%] capitalize border border-gray-500 rounded-md p-2'
-                        placeholder='FMI'
-                        onChange={(e) => setFmi(e.target.value)}
-                    />
+                    <div className='w-full flex gap-3'>
+                        <input 
+                            value={fmi ? fmi : ''}
+                            className='h-[35px] w-[40%] capitalize border border-gray-500 rounded-md p-2 text-center'
+                            placeholder='FMI'
+                            onChange={(e) => setFmi(e.target.value)}
+                        />
+
+                        <DocJustifica docSelecc={docSelecc} setDocSelecc={setDocSelecc} />
+                    </div>
 
                     <div className='flex items-center gap-5'>
                         <Button
@@ -174,13 +186,17 @@ export default function PrimeraPropietario() {
                         identificado(a) con <span className='text-red-500 uppercase'>{tipoDoc}</span>. 
                         NO. <span className='text-red-500'>{formatNumber(numDoc)}</span>,
                         en su condición de propietario del inmueble con número 
-                        predial <span className='text-red-500'>{npn}</span>, inscrito en la base de datos catastral 
-                        del municipio de Montería, presentó ante la Oficina de atención al público una solicitud 
-                        de trámite catastral, consistente en Cambio de propietario. soportada en los siguientes 
-                        documentos justificativos: <span className='text-red-500 capitalize'>{fuenteAdmin} No.
-                        {numFuenteAdmin}</span>  del <span className='text-red-500'>{fecha}</span> de (la) 
+                        predial <span className='text-red-500'>{npn}</span>, inscrito en la base de datos 
+                        catastral del municipio de Montería, presentó ante la Oficina de atención al público 
+                        una solicitud de trámite catastral, consistente en Cambio de propietario. 
+                        soportada en los siguientes 
+                        documentos justificativos: 
+                        <span className='text-red-500 capitalize'> {fuenteAdmin} No. {numFuenteAdmin} </span>  
+                        del <span className='text-red-500'>{fecha}</span> de (la) 
                         <span className='text-red-500 capitalize'> {emisor}</span>, 
-                        d ebidamente registrada en el folio de matrícula inmobiliaria <span className='text-red-500'>140 - {fmi}</span>.
+                        debidamente registrada en el folio de matrícula inmobiliaria 
+                        <span className='text-red-500'>140-{fmi}</span>,
+                        <span className='text-red-500'> {docSelecc.sort().join(', ')}</span>.
                         </span>
                         <br/><br/>
                         <span>

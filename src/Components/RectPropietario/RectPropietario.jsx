@@ -23,6 +23,8 @@ export default function RectPropietario() {
     const [ fecha, setFecha ] = useState('')
     const [ emisor, setEmisor ] = useState('')
     const [ fmi, setFmi ] = useState('')
+    const optionsRect = ['dirección','nombres','apellidos','documento','tipo de documento','no documento','matricula inmobiliaria'].sort().map(item => ({value: item, label: item}))
+    // const [ rectificacion, setRectificacion ] 
 
     const handleLimpiar = () => {
         setNombre('')
@@ -69,7 +71,7 @@ export default function RectPropietario() {
         <div className='w-full h-[78vh] flex '>
 
             <div className='flex justify-center items-center border border-gray-500'>
-                <div className='opciones-rectificacion-propietario'>
+                <div className='opciones-rectificacion-propietario max-h-[100%] overflow-y-auto'>
                     <input 
                         value={nombre ?nombre : ''}
                         placeholder='NOMBRE'
@@ -152,6 +154,13 @@ export default function RectPropietario() {
                         onChange={(e) => setFmi(e.target.value)}
                     />
 
+                    <Select 
+                        menuPlacement='auto'
+                        className='w-[80%] capitalize'
+                        isMulti
+                        options={optionsRect}
+                    />
+
                     <div className='flex items-center gap-5'>
                         <Button
                             size='sm'
@@ -205,6 +214,12 @@ export default function RectPropietario() {
                         <span className='text-red-500 capitalize'> {emisor}</span>, 
                         debidamente registrada en el folio de matrícula inmobiliaria  
                         <span className='text-red-500'> 140 - {fmi}</span>.
+                    </span>
+                    <br/><br/>
+                    <span>
+                        Que de acuerdo al estudio de los documentos jurídicos se verifica por parte del 
+                        operador que procede un trámite consistente a una 
+                        rectificación de (la)
                     </span>
                     <br/><br/>
                     <span>

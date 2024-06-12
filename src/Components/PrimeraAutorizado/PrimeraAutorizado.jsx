@@ -70,7 +70,7 @@ return (
                 <div className='opciones'>               
                     <input 
                         value={nombre ?nombre : ''}
-                        placeholder='NOMBRE'
+                        placeholder='nombre autorizado'
                         className='h-[35px] w-[80%] capitalize  border border-gray-500 rounded-md p-2'
                         onChange={(e) => setNombre(e.target.value)}
                     />
@@ -79,7 +79,7 @@ return (
                         <Select
                             isSearchable={false}
                             className='w-[50%] uppercase'
-                            placeholder={tipoDoc !== '' ? tipoDoc : 'documento'}
+                            placeholder={tipoDoc !== '' ? tipoDoc : 'doc. autorizado'}
                             options={optionsTipoDoc}
                             onChange={(e) => setTipoDoc(e.value)}
                             value={tipoDoc}
@@ -93,6 +93,13 @@ return (
                             onChange={(e) => setNumDoc(e.target.value)}
                         />  
                     </div>
+
+                    <input 
+                        value={nombre ?nombre : ''}
+                        placeholder='nombre propietario'
+                        className='h-[35px] w-[80%] capitalize  border border-gray-500 rounded-md p-2'
+                        onChange={(e) => setNombre(e.target.value)}
+                    />
 
                     <input 
                         value={npn ? npn : ''}
@@ -173,7 +180,11 @@ return (
                         Que el(la) señor(a) <span className='text-red-500 capitalize'>{nombre} </span>  
                         identificado(a) con <span className='text-red-500 uppercase'>{tipoDoc}</span>. 
                         NO. <span className='text-red-500'>{formatNumber(numDoc)}</span>,
-                        en su condición de contacto del propietario del inmueble identificado con número predial
+                        en su condición de contacto y/o autorizado del (la) señor(a)
+                        <span className='text-red-500 capitalize'> {nombre} </span> identificado(a) con
+                        <span className='text-red-500 uppercase'> {tipoDoc}</span>. 
+                        <span className='text-red-500'> {formatNumber(numDoc)} </span>
+                        propietario del inmueble identificado con número predial
 						<span className='text-red-500'>{npn}</span>, inscrito en la base de datos catastral 
                         del municipio de Montería, presentó ante la Oficina de atención al público una solicitud 
                         de trámite catastral, consistente en Cambio de propietario. soportada en los siguientes 
