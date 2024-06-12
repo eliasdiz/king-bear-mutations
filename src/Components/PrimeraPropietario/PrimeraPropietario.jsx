@@ -195,7 +195,7 @@ export default function PrimeraPropietario() {
                             del <span className='text-red-500'>{fecha}</span> de (la) 
                             <span className='text-red-500 capitalize'> {emisor}</span>, 
                             debidamente registrada en el folio de matrícula inmobiliaria 
-                            <span className='text-red-500'>140-{fmi}</span>,
+                            <span className='text-red-500'> 140-{fmi}</span>,
                             <span className='text-red-500'> {docSelecc.sort().join(', ')}</span>.
                         </span>
                         <br/><br/>
