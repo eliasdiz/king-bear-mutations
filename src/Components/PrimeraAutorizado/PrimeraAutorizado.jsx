@@ -5,9 +5,13 @@ import Select from 'react-select'
 import toast, { Toaster } from 'react-hot-toast'
 import numeral from 'numeral'
 import ArticulosPrimera from '../ArticulosPrimera/ArticulosPrimera'
+import DocJustifica from '../DocJustifica/DocJustifica'
 
 export default function PrimeraAutorizado() {
 
+    const [ nombreAut, setNombreAut ] = useState('')
+    const [ tipoDocAut, setTipoDocAut ] = useState('')
+    const [ numDocAut, setNumDocAut ] = useState('')
 	const [ nombre, setNombre ] = useState('')
     const optionsTipoDoc = ['cc', 'ti', 'ce'].map( item => ({value: item, label: item}))
     const [ tipoDoc, setTipoDoc ] = useState('')
@@ -20,10 +24,15 @@ export default function PrimeraAutorizado() {
     const [ emisor, setEmisor ] = useState('')
     const [ fmi, setFmi ] = useState('')
     const textoOk = useRef()
+    const [ docSelecc, setDocSelecc ] = useState([])
+
 
     // console.log(textoOk.current.innerText)
 
     const handleLimpiar = () => {
+        setNombreAut('')
+        setTipoDocAut('')
+        setNumDocAut('')
         setNombre('')
         setTipoDoc('')
         setNumDoc('')
@@ -33,11 +42,15 @@ export default function PrimeraAutorizado() {
         setFecha('')
         setEmisor('')
         setFmi('')
+        setDocSelecc([])
     }
 
     const handleCopiar = () => {
         let texto = textoOk?.current?.innerText
         let data = {
+            nombreAut: nombreAut,
+            tipoDocAut: tipoDocAut,
+            numDocAut: numDocAut,
             nombre: nombre,
             tipoDoc: tipoDoc,
             numDoc: numDoc,
@@ -46,11 +59,12 @@ export default function PrimeraAutorizado() {
             numFuenteAdmin: numFuenteAdmin,
             fecha: fecha,
             emisor: emisor,
-            fmi: fmi
+            fmi: fmi,
+            docSelecc: docSelecc
         } 
 
         for( let item in data){
-            if( data[item] === ''){
+            if( data[item] === '' || data[item].length === 0){
                 return toast.error(`debes ingresar ${item}`, {duration: 1000, style:{textTransform: 'capitalize'}})
             }
             }
@@ -69,28 +83,28 @@ return (
 
                 <div className='opciones'>               
                     <input 
-                        value={nombre ?nombre : ''}
+                        value={nombreAut ? nombreAut : ''}
                         placeholder='nombre autorizado'
                         className='h-[35px] w-[80%] capitalize  border border-gray-500 rounded-md p-2'
-                        onChange={(e) => setNombre(e.target.value)}
+                        onChange={(e) => setNombreAut(e.target.value)}
                     />
 
                     <div className='flex justify-center items-center gap-6'>
                         <Select
                             isSearchable={false}
                             className='w-[50%] uppercase'
-                            placeholder={tipoDoc !== '' ? tipoDoc : 'doc. autorizado'}
+                            placeholder={tipoDocAut !== '' ? tipoDocAut : 'doc. aut'}
                             options={optionsTipoDoc}
-                            onChange={(e) => setTipoDoc(e.value)}
-                            value={tipoDoc}
+                            onChange={(e) => setTipoDocAut(e.value)}
+                            value={tipoDocAut}
                         />
 
                         <input 
-                            value={numDoc ? numDoc : ''}
-                            placeholder='# documento'
+                            value={numDocAut ? numDocAut : ''}
+                            placeholder='# doc. autorizado'
                             type='number'
-                            className='h-[35px] w-[50%] capitalize border border-gray-500 rounded-md p-2'
-                            onChange={(e) => setNumDoc(e.target.value)}
+                            className='h-[35px] w-[50%] capitalize border border-gray-500 rounded-md p-2 text-center'
+                            onChange={(e) => setNumDocAut(e.target.value)}
                         />  
                     </div>
 
@@ -101,10 +115,29 @@ return (
                         onChange={(e) => setNombre(e.target.value)}
                     />
 
+                    <div className='flex justify-center items-center gap-6'>
+                        <Select
+                            isSearchable={false}
+                            className='w-[50%] uppercase'
+                            placeholder={tipoDoc !== '' ? tipoDoc : 'doc. propietario'}
+                            options={optionsTipoDoc}
+                            onChange={(e) => setTipoDoc(e.value)}
+                            value={tipoDoc}
+                        />
+
+                        <input 
+                            value={numDoc ? numDoc : ''}
+                            placeholder='# doc. propietario'
+                            type='number'
+                            className='h-[35px] w-[50%] capitalize border border-gray-500 rounded-md p-2 text-center'
+                            onChange={(e) => setNumDoc(e.target.value)}
+                        />  
+                    </div>
+
                     <input 
                         value={npn ? npn : ''}
                         placeholder='NPN'
-                        className='h-[35px] w-[80%]  border border-gray-500 rounded-md p-2'
+                        className='h-[35px] w-[80%]  border border-gray-500 rounded-md p-2 text-center'
                         onChange={(e) => setNpn(e.target.value)}
                         />
                     
@@ -116,10 +149,11 @@ return (
                             options={optionsFuenteAdmin}
                             onChange={(e) => setFuenteAdmin(e.value)}
                             value={fuenteAdmin}
+                            menuPlacement='auto'
                         />
                         <input 
                             value={numFuenteAdmin ? numFuenteAdmin : ''}
-                            className='h-[35px] w-[25%] uppercase  border border-gray-500 rounded-md p-2'
+                            className='h-[35px] w-[25%] uppercase  border border-gray-500 rounded-md p-2 text-center'
                             placeholder='N°'
                             onChange={(e) => setNumFuenteAdmin(e.target.value)}
                         />
@@ -140,12 +174,16 @@ return (
                         onChange={(e) => setEmisor(e.target.value.toLocaleLowerCase())}
                     />
 
-                    <input 
-                        value={fmi ? fmi : ''}
-                        className='h-[35px] w-[40%] capitalize border border-gray-500 rounded-md p-2'
-                        placeholder='FMI'
-                        onChange={(e) => setFmi(e.target.value)}
-                    />
+                    <div className='w-full flex gap-3'>
+                        <input 
+                            value={fmi ? fmi : ''}
+                            className='h-[35px] w-[30%] capitalize border border-gray-500 rounded-md p-2 text-center'
+                            placeholder='FMI'
+                            onChange={(e) => setFmi(e.target.value)}
+                        />
+
+                        <DocJustifica docSelecc={docSelecc} setDocSelecc={setDocSelecc} />
+                    </div>
 
                     <div className='flex items-center gap-5'>
                         <Button
@@ -177,21 +215,23 @@ return (
                         ref={textoOk}
                     >
                         <span>
-                        Que el(la) señor(a) <span className='text-red-500 capitalize'>{nombre} </span>  
-                        identificado(a) con <span className='text-red-500 uppercase'>{tipoDoc}</span>. 
-                        NO. <span className='text-red-500'>{formatNumber(numDoc)}</span>,
-                        en su condición de contacto y/o autorizado del (la) señor(a)
-                        <span className='text-red-500 capitalize'> {nombre} </span> identificado(a) con
-                        <span className='text-red-500 uppercase'> {tipoDoc}</span>. 
-                        <span className='text-red-500'> {formatNumber(numDoc)} </span>
-                        propietario del inmueble identificado con número predial
-						<span className='text-red-500'>{npn}</span>, inscrito en la base de datos catastral 
-                        del municipio de Montería, presentó ante la Oficina de atención al público una solicitud 
-                        de trámite catastral, consistente en Cambio de propietario. soportada en los siguientes 
-                        documentos justificativos: <span className='text-red-500 capitalize'>{fuenteAdmin} No.
-                        {numFuenteAdmin}</span>  del <span className='text-red-500'>{fecha}</span> de (la) 
-                        <span className='text-red-500 capitalize'> {emisor}</span>, 
-                        debidamente registrada en el folio de matrícula inmobiliaria <span className='text-red-500'>140 - {fmi}</span>.
+                            Que el(la) señor(a) <span className='text-red-500 capitalize'>{nombreAut} </span>  
+                            identificado(a) con <span className='text-red-500 uppercase'>{tipoDocAut}</span>. 
+                            NO. <span className='text-red-500'>{formatNumber(numDocAut)}</span>,
+                            en su condición de contacto y/o autorizado del (la) señor(a)
+                            <span className='text-red-500 capitalize'> {nombre} </span> identificado(a) con
+                            <span className='text-red-500 uppercase'> {tipoDoc}</span>. 
+                            <span className='text-red-500'> {formatNumber(numDoc)} </span>
+                            propietario del inmueble identificado con número predial
+                            <span className='text-red-500'>{npn}</span>, inscrito en la base de datos catastral 
+                            del municipio de Montería, presentó ante la Oficina de atención al público una solicitud 
+                            de trámite catastral, consistente en Cambio de propietario. soportada en los siguientes 
+                            documentos justificativos: <span className='text-red-500 capitalize'>{fuenteAdmin} No. {numFuenteAdmin} </span>  
+                            del <span className='text-red-500'>{fecha}</span> de (la) 
+                            <span className='text-red-500 capitalize'> {emisor}</span>, 
+                            debidamente registrada en el folio de matrícula inmobiliaria 
+                            <span className='text-red-500'> 140 - {fmi}</span>,
+                            <span className='text-red-500'> {docSelecc.sort().join(', ')}</span>.
                         </span>
                         <br/><br/>
                         <span>

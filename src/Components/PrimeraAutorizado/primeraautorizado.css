@@ -1,7 +1,7 @@
 .primeraAutorizado {
     display: flex;
     justify-content: space-evenly;
-    padding: 1rem;
+    /* padding: 1rem; */
 }
 .opciones {
     width: 85%;
@@ -9,5 +9,5 @@
     display: flex;
     flex-direction: column;
     align-items: baseline;
-    gap: 10px;
+    gap: 8px;
 }

@@ -182,21 +182,21 @@ export default function PrimeraPropietario() {
                         ref={textoOk}
                     >
                         <span>
-                        Que el(la) señor(a) <span className='text-red-500 capitalize'>{nombre} </span>  
-                        identificado(a) con <span className='text-red-500 uppercase'>{tipoDoc}</span>. 
-                        NO. <span className='text-red-500'>{formatNumber(numDoc)}</span>,
-                        en su condición de propietario del inmueble con número 
-                        predial <span className='text-red-500'>{npn}</span>, inscrito en la base de datos 
-                        catastral del municipio de Montería, presentó ante la Oficina de atención al público 
-                        una solicitud de trámite catastral, consistente en Cambio de propietario. 
-                        soportada en los siguientes 
-                        documentos justificativos: 
-                        <span className='text-red-500 capitalize'> {fuenteAdmin} No. {numFuenteAdmin} </span>  
-                        del <span className='text-red-500'>{fecha}</span> de (la) 
-                        <span className='text-red-500 capitalize'> {emisor}</span>, 
-                        debidamente registrada en el folio de matrícula inmobiliaria 
-                        <span className='text-red-500'>140-{fmi}</span>,
-                        <span className='text-red-500'> {docSelecc.sort().join(', ')}</span>.
+                            Que el(la) señor(a) <span className='text-red-500 capitalize'>{nombre} </span>  
+                            identificado(a) con <span className='text-red-500 uppercase'>{tipoDoc}</span>. 
+                            NO. <span className='text-red-500'>{formatNumber(numDoc)}</span>,
+                            en su condición de propietario del inmueble con número 
+                            predial <span className='text-red-500'>{npn}</span>, inscrito en la base de datos 
+                            catastral del municipio de Montería, presentó ante la Oficina de atención al público 
+                            una solicitud de trámite catastral, consistente en Cambio de propietario. 
+                            soportada en los siguientes 
+                            documentos justificativos: 
+                            <span className='text-red-500 capitalize'> {fuenteAdmin} No. {numFuenteAdmin} </span>  
+                            del <span className='text-red-500'>{fecha}</span> de (la) 
+                            <span className='text-red-500 capitalize'> {emisor}</span>, 
+                            debidamente registrada en el folio de matrícula inmobiliaria 
+                            <span className='text-red-500'>140-{fmi}</span>,
+                            <span className='text-red-500'> {docSelecc.sort().join(', ')}</span>.
                         </span>
                         <br/><br/>
                         <span>
