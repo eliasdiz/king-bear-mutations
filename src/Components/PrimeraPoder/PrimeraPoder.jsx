@@ -5,11 +5,16 @@ import Select from 'react-select'
 import toast, { Toaster } from 'react-hot-toast'
 import numeral from 'numeral'
 import ArticulosPrimera from '../ArticulosPrimera/ArticulosPrimera'
+import DocJustifica from '../DocJustifica/DocJustifica'
 
 
 export default function PrimeraPoder() {
 
-    const [ nombre, setNombre ] = useState('')
+    const [ nombreApode, setNombreApode ] = useState('')
+    const [ tipoDocApode, setTipoDocApode ] = useState('')
+    const [ numDocApode, setNumDocApode ] = useState('')
+    const [ tarjProfe, setTarjProfe ] = useState('')
+	const [ nombre, setNombre ] = useState('')
     const optionsTipoDoc = ['cc', 'ti', 'ce'].map( item => ({value: item, label: item}))
     const [ tipoDoc, setTipoDoc ] = useState('')
     const [ numDoc, setNumDoc ] = useState('')
@@ -21,10 +26,16 @@ export default function PrimeraPoder() {
     const [ emisor, setEmisor ] = useState('')
     const [ fmi, setFmi ] = useState('')
     const textoOk = useRef()
+    const [ docSelecc, setDocSelecc ] = useState([])
+
 
     // console.log(textoOk.current.innerText)
 
     const handleLimpiar = () => {
+        setNombreApode('')
+        setTipoDocApode('')
+        setNumDocApode('')
+        setTarjProfe('')
         setNombre('')
         setTipoDoc('')
         setNumDoc('')
@@ -34,11 +45,16 @@ export default function PrimeraPoder() {
         setFecha('')
         setEmisor('')
         setFmi('')
+        setDocSelecc([])
     }
 
     const handleCopiar = () => {
         let texto = textoOk?.current?.innerText
         let data = {
+            nombreApode:nombreApode,
+            tipoDocApode: tipoDocApode,
+            numDocApode:numDocApode,
+            tarjProfe: tarjProfe,
             nombre: nombre,
             tipoDoc: tipoDoc,
             numDoc: numDoc,
@@ -47,11 +63,12 @@ export default function PrimeraPoder() {
             numFuenteAdmin: numFuenteAdmin,
             fecha: fecha,
             emisor: emisor,
-            fmi: fmi
+            fmi: fmi,
+            docSelecc: docSelecc
         } 
 
         for( let item in data){
-            if( data[item] === ''){
+            if( data[item] === '' || data[item].length === 0){
                 return toast.error(`debes ingresar ${item}`, {duration: 1000, style:{textTransform: 'capitalize'}})
             }
             }
@@ -64,14 +81,48 @@ export default function PrimeraPoder() {
     };
 
     return (
-        <div className='primeraPoder'>
+        <div className='primeraAutorizado'>
 
         <div className='w-[40%] flex justify-center items-center border border-gray-300'>
 
                 <div className='opciones'>               
                     <input 
+                        value={nombreApode ? nombreApode : ''}
+                        placeholder='nombre apoderado'
+                        className='h-[35px] w-[80%] capitalize  border border-gray-500 rounded-md p-2'
+                        onChange={(e) => setNombreApode(e.target.value)}
+                    />
+
+                    <div className='flex items-center gap-1'>
+                        <Select
+                            isSearchable={false}
+                            className='w-[35%] uppercase'
+                            placeholder={tipoDocApode !== '' ? tipoDocApode : 'doc. apode'}
+                            options={optionsTipoDoc}
+                            onChange={(e) => setTipoDocApode(e.value)}
+                            value={tipoDocApode}
+                        />
+
+                        <input 
+                            value={numDocApode ? numDocApode : ''}
+                            placeholder='# doc. apoderado'
+                            type='number'
+                            className='h-[35px] w-[35%] capitalize border border-gray-500 rounded-md p-2 text-center'
+                            onChange={(e) => setNumDocApode(e.target.value)}
+                        />  
+
+                        <input 
+                            value={tarjProfe ? tarjProfe : ''}
+                            placeholder='t. profesional'
+                            // type='number'
+                            className='h-[35px] w-[30%] capitalize border border-gray-500 rounded-md p-2 text-center'
+                            onChange={(e) => setTarjProfe(e.target.value)}
+                        />  
+                    </div>
+
+                    <input 
                         value={nombre ?nombre : ''}
-                        placeholder='NOMBRE'
+                        placeholder='nombre propietario'
                         className='h-[35px] w-[80%] capitalize  border border-gray-500 rounded-md p-2'
                         onChange={(e) => setNombre(e.target.value)}
                     />
@@ -80,7 +131,7 @@ export default function PrimeraPoder() {
                         <Select
                             isSearchable={false}
                             className='w-[50%] uppercase'
-                            placeholder={tipoDoc !== '' ? tipoDoc : 'documento'}
+                            placeholder={tipoDoc !== '' ? tipoDoc : 'doc. propietario'}
                             options={optionsTipoDoc}
                             onChange={(e) => setTipoDoc(e.value)}
                             value={tipoDoc}
@@ -88,9 +139,9 @@ export default function PrimeraPoder() {
 
                         <input 
                             value={numDoc ? numDoc : ''}
-                            placeholder='# documento'
+                            placeholder='# doc. propietario'
                             type='number'
-                            className='h-[35px] w-[50%] capitalize border border-gray-500 rounded-md p-2'
+                            className='h-[35px] w-[50%] capitalize border border-gray-500 rounded-md p-2 text-center'
                             onChange={(e) => setNumDoc(e.target.value)}
                         />  
                     </div>
@@ -98,7 +149,7 @@ export default function PrimeraPoder() {
                     <input 
                         value={npn ? npn : ''}
                         placeholder='NPN'
-                        className='h-[35px] w-[80%]  border border-gray-500 rounded-md p-2'
+                        className='h-[35px] w-[80%]  border border-gray-500 rounded-md p-2 text-center'
                         onChange={(e) => setNpn(e.target.value)}
                         />
                     
@@ -110,10 +161,11 @@ export default function PrimeraPoder() {
                             options={optionsFuenteAdmin}
                             onChange={(e) => setFuenteAdmin(e.value)}
                             value={fuenteAdmin}
+                            menuPlacement='auto'
                         />
                         <input 
                             value={numFuenteAdmin ? numFuenteAdmin : ''}
-                            className='h-[35px] w-[25%] uppercase  border border-gray-500 rounded-md p-2'
+                            className='h-[35px] w-[25%] uppercase  border border-gray-500 rounded-md p-2 text-center'
                             placeholder='N°'
                             onChange={(e) => setNumFuenteAdmin(e.target.value)}
                         />
@@ -134,12 +186,16 @@ export default function PrimeraPoder() {
                         onChange={(e) => setEmisor(e.target.value.toLocaleLowerCase())}
                     />
 
-                    <input 
-                        value={fmi ? fmi : ''}
-                        className='h-[35px] w-[40%] capitalize border border-gray-500 rounded-md p-2'
-                        placeholder='FMI'
-                        onChange={(e) => setFmi(e.target.value)}
-                    />
+                    <div className='w-full flex gap-3'>
+                        <input 
+                            value={fmi ? fmi : ''}
+                            className='h-[35px] w-[30%] capitalize border border-gray-500 rounded-md p-2 text-center'
+                            placeholder='FMI'
+                            onChange={(e) => setFmi(e.target.value)}
+                        />
+
+                        <DocJustifica docSelecc={docSelecc} setDocSelecc={setDocSelecc} />
+                    </div>
 
                     <div className='flex items-center gap-5'>
                         <Button
@@ -171,17 +227,24 @@ export default function PrimeraPoder() {
                         ref={textoOk}
                     >
                         <span>
-                        Que el(la) señor(a) <span className='text-red-500 capitalize'>{nombre} </span>  
-                        identificado(a) con <span className='text-red-500 uppercase'>{tipoDoc}</span>. 
-                        NO. <span className='text-red-500'>{formatNumber(numDoc)}</span>,
-                        en su condición de apoderado del propietario del inmueble identificado con número predial
-						<span className='text-red-500'>{npn}</span>, inscrito en la base de datos catastral 
-                        del municipio de Montería, presentó ante la Oficina de atención al público una solicitud 
-                        de trámite catastral, consistente en Cambio de propietario. soportada en los siguientes 
-                        documentos justificativos: <span className='text-red-500 capitalize'>{fuenteAdmin} No.
-                        {numFuenteAdmin}</span>  del <span className='text-red-500'>{fecha}</span> de (la) 
-                        <span className='text-red-500 capitalize'> {emisor}</span>, 
-                        debidamente registrada en el folio de matrícula inmobiliaria <span className='text-red-500'>140 - {fmi}</span>.
+                            Que el(la) señor(a) <span className='text-red-500 capitalize'>{nombreApode} </span>  
+                            identificado(a) con <span className='text-red-500 uppercase'>{tipoDocApode}</span>. 
+                            NO. <span className='text-red-500'>{formatNumber(numDocApode)}</span>, y
+                            TP. <span className='text-red-500 uppercase'>{tarjProfe} </span> 
+                            en su condición de apoderado del (la) señor(a)
+                            <span className='text-red-500 capitalize'> {nombre} </span> identificado(a) con
+                            <span className='text-red-500 uppercase'> {tipoDoc}</span>. 
+                            <span className='text-red-500'> {formatNumber(numDoc)} </span>
+                            propietario del inmueble identificado con número predial
+                            <span className='text-red-500'> {npn}</span>, inscrito en la base de datos catastral 
+                            del municipio de Montería, presentó ante la Oficina de atención al público una solicitud 
+                            de trámite catastral, consistente en Cambio de propietario. soportada en los siguientes 
+                            documentos justificativos: <span className='text-red-500 capitalize'>{fuenteAdmin} No. {numFuenteAdmin} </span>  
+                            del <span className='text-red-500'>{fecha}</span> de (la) 
+                            <span className='text-red-500 capitalize'> {emisor}</span>, 
+                            debidamente registrada en el folio de matrícula inmobiliaria 
+                            <span className='text-red-500'> 140 - {fmi}</span>,
+                            <span className='text-red-500'> {docSelecc.sort().join(', ')}</span>.
                         </span>
                         <br/><br/>
                         <span>
