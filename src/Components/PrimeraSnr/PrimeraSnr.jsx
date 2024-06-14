@@ -157,7 +157,7 @@ export default function PrimeraSnr() {
                             la superintendencia de notariado y registro del circuito de Montería, suministro información para realizar el debido estudio jurídico,
                             con el fin de inscribir en la base catastral del municipio de Montería, Córdoba las respectivas mutaciones. La oficina de catastro 
                             radico con el número <span className='text-red-500'>{añoRadicado} - {radicado}</span>, el predio <span className='text-red-500'>{npn}</span>, soportada en los siguientes documentos 
-                            justificativos: <span className='text-red-500 capitalize'>{fuenteAdmin} No.{numFuenteAdmin}</span>  del <span className='text-red-500'>{fecha}</span> de (la) <span className='text-red-500 capitalize'>{emisor}</span>, 
+                            aportados: <span className='text-red-500 capitalize'>{fuenteAdmin} No.{numFuenteAdmin}</span>  del <span className='text-red-500'>{fecha}</span> de (la) <span className='text-red-500 capitalize'>{emisor}</span>, 
                             debidamente registrada en el folio de matrícula inmobiliaria <span className='text-red-500'>140 - {fmi}</span>.
                         </span>
                         <br/><br/>

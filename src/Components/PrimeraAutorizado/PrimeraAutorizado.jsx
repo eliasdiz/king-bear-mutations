@@ -226,7 +226,7 @@ return (
                             <span className='text-red-500'>{npn}</span>, inscrito en la base de datos catastral 
                             del municipio de Montería, presentó ante la Oficina de atención al público una solicitud 
                             de trámite catastral, consistente en Cambio de propietario. soportada en los siguientes 
-                            documentos justificativos: <span className='text-red-500 capitalize'>{fuenteAdmin} No. {numFuenteAdmin} </span>  
+                            documentos aportados: <span className='text-red-500 capitalize'>{fuenteAdmin} No. {numFuenteAdmin} </span>  
                             del <span className='text-red-500'>{fecha}</span> de (la) 
                             <span className='text-red-500 capitalize'> {emisor}</span>, 
                             debidamente registrada en el folio de matrícula inmobiliaria 

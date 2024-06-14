@@ -44,7 +44,7 @@ export default function DocJustifica({docSelecc,setDocSelecc}) {
                 onClick={handleOpen}
                 className='w-full capitalize text-sm'
             >
-                doc. justificativos
+                doc. aportados
             </Button>
 
             <Dialog open={open} handler={handleOpen}>
