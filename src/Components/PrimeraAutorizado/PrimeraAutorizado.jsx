@@ -13,7 +13,7 @@ export default function PrimeraAutorizado() {
     const [ tipoDocAut, setTipoDocAut ] = useState('')
     const [ numDocAut, setNumDocAut ] = useState('')
 	const [ nombre, setNombre ] = useState('')
-    const optionsTipoDoc = ['cc', 'ti', 'ce'].map( item => ({value: item, label: item}))
+    const optionsTipoDoc = ['cc', 'ti', 'ce','nit'].sort().map( item => ({value: item, label: item}))
     const [ tipoDoc, setTipoDoc ] = useState('')
     const [ numDoc, setNumDoc ] = useState('')
     const [ npn, setNpn ] = useState('')
@@ -223,7 +223,7 @@ return (
                             <span className='text-red-500 uppercase'> {tipoDoc}</span>. 
                             <span className='text-red-500'> {formatNumber(numDoc)} </span>
                             propietario del inmueble identificado con número predial
-                            <span className='text-red-500'>{npn}</span>, inscrito en la base de datos catastral 
+                            <span className='text-red-500'> {npn}</span>, inscrito en la base de datos catastral 
                             del municipio de Montería, presentó ante la Oficina de atención al público una solicitud 
                             de trámite catastral, consistente en Cambio de propietario. soportada en los siguientes 
                             documentos aportados: <span className='text-red-500 capitalize'>{fuenteAdmin} No. {numFuenteAdmin} </span>  

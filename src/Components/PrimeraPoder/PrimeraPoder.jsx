@@ -15,7 +15,7 @@ export default function PrimeraPoder() {
     const [ numDocApode, setNumDocApode ] = useState('')
     const [ tarjProfe, setTarjProfe ] = useState('')
 	const [ nombre, setNombre ] = useState('')
-    const optionsTipoDoc = ['cc', 'ti', 'ce'].map( item => ({value: item, label: item}))
+    const optionsTipoDoc = ['cc', 'ti', 'ce','nit'].sort().map( item => ({value: item, label: item}))
     const [ tipoDoc, setTipoDoc ] = useState('')
     const [ numDoc, setNumDoc ] = useState('')
     const [ npn, setNpn ] = useState('')
