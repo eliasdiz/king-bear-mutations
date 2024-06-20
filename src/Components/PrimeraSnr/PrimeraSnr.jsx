@@ -8,7 +8,7 @@ import ArticulosPrimera from '../ArticulosPrimera/ArticulosPrimera'
 export default function PrimeraSnr() {
 
     const optionsAñoRadicado = ['2023','2024'].map(item => ({value: item, label: item}))
-    const [ añoRadicado, setAñoRadicado ] = useState('')
+    const [ añoRadicado, setAñoRadicado ] = useState('2024')
     const [ radicado, setRadicado ] = useState('')
     const [ npn, setNpn ] = useState('')
     const optionsFuenteAdmin = ['documento publico','escritura publica','sentencia judicial','acto administratico','sin documento','documento privado'].sort().map(item => ({value: item, label: item}))
