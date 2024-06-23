@@ -5,11 +5,9 @@ import toast, { Toaster } from 'react-hot-toast'
 export default function DocJustifica({docSelecc,setDocSelecc}) {
 
     const [ open, setOpen ] = useState(false)
-    const optionsDocJusti = ['registro civil de nacimiento','cedula','acta de defuncion','registro civil','planos','solicitud','certificado tradicion libertad'].sort()
+    const optionsDocJusti = ['cedula','acta de defuncion','registro civil','planos','solicitud','certificado tradicion y libertad'].sort()
     const [ docJusti, setDocJusti ] = useState(optionsDocJusti || [] )
     const [ docIngresado, setDocIngresado ] = useState('')
-    // const [ docSelecc, setDocSelecc ] = useState([])
-    // console.log()
 
     const handleOpen = () => setOpen(!open)
 
@@ -31,9 +29,7 @@ export default function DocJustifica({docSelecc,setDocSelecc}) {
     
     const handleClose = () => {
         setOpen(false)
-        // setDocJusti(optionsDocJusti)
     }
-    // console.log(docSelecc)            
 
     return (
         <>
@@ -77,16 +73,15 @@ export default function DocJustifica({docSelecc,setDocSelecc}) {
                             agregar
                         </Button>
                     </div>
-                    <div className='flex flex-wrap  max-w-[75%] p-1 rounded-md capitalize'>
+                    <div className='flex flex-wrap gap-3 capitalize '>
 
                         {
                             docJusti.map( (item,i) => (
-                                <div key={i} className='w-[50%] border rounded-md'>
+                                <div key={i} className='flex items-center h-[50px] w-[45%] p-2 border rounded-md'>
                                     <Checkbox
                                         value={item}
                                         color='blue'
                                         label={item} 
-                                        className=''
                                         onChange={handleCheck}  
                                         checked={docSelecc.includes(item)}
                                     />

@@ -5,38 +5,41 @@ import React, { useRef, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import Select from 'react-select'
 import ArticulosRect from '../ArticulosRect/ArticulosRect'
+import DocJustifica from '../DocJustifica/DocJustifica'
+import DocRectifica from '../DocRectifica/DocRectifica'
 
 export default function RectPropietario() {
 
     const movitvada = useRef()
     const [ nombre, setNombre ] = useState('')
-    const optionsTipoDoc = ['cc', 'ti', 'ce'].map( item => ({value: item, label: item}))
+    const optionsTipoDoc = ['cc', 'ti', 'ce','nit'].sort().map( item => ({value: item, label: item}))
     const [ tipoDoc, setTipoDoc ] = useState('')
     const [ numDoc, setNumDoc ] = useState('')
     const [ npn, setNpn ] = useState('')
-    const optionsJustificativos = ['cedula','acta de defuncion','registro civil','planos','solicitud','certificado tradicion libertad'].sort().map(item => ({value: item, label: item}))
-    const [ justificativos, setJustificativos ] = useState([])
-    const docJusti = justificativos?.map(item => item?.value)
     const optionsFuenteAdmin = ['resolucion', 'documento publico','escritura publica','sentencia judicial','acto administrativo','sin documento','documento privado'].sort().map(item => ({value: item, label: item}))
     const [ fuenteAdmin, setFuenteAdmin ] = useState('')
     const [ numFuenteAdmin, setNumFuenteAdmin ] = useState('')
     const [ fecha, setFecha ] = useState('')
     const [ emisor, setEmisor ] = useState('')
     const [ fmi, setFmi ] = useState('')
-    const optionsRect = ['dirección','nombres','apellidos','documento','tipo de documento','no documento','matricula inmobiliaria'].sort().map(item => ({value: item, label: item}))
-    // const [ rectificacion, setRectificacion ] 
+    const [ docSelecc, setDocSelecc ] = useState([])
+    const [ checkSelecc, setCheckSelecc ] = useState([])
+
+
+
 
     const handleLimpiar = () => {
         setNombre('')
         setTipoDoc('')
         setNumDoc('')
         setNpn('')
-        setJustificativos([])
         setFuenteAdmin('')
         setNumFuenteAdmin('')
         setFecha('')
         setEmisor('')
         setFmi('')
+        setDocSelecc([])
+        setCheckSelecc([])
     }
 
     const handleCopiar = () => {
@@ -46,12 +49,13 @@ export default function RectPropietario() {
             tipoDoc: tipoDoc,
             numDoc: numDoc,
             npn: npn,
-            docJusti: docJusti,
             fuenteAdmin: fuenteAdmin,
             numFuenteAdmin: numFuenteAdmin,
             fecha: fecha,
             emisor: emisor,
-            fmi: fmi
+            fmi: fmi,
+            docSelecc: docSelecc,
+            checkSelecc: checkSelecc
         } 
 
         for( let item in data){
@@ -101,21 +105,13 @@ export default function RectPropietario() {
                     <input 
                         value={npn ?npn : ''}
                         placeholder='NPN'
-                        className='h-[35px] w-[80%] capitalize  border border-gray-500 rounded-md p-2'
+                        className='h-[35px] w-[80%] capitalize  border border-gray-500 rounded-md p-2 text-center'
                         onChange={(e) => setNpn(e.target.value)}
-                    />
-
-                    <Select
-                        isMulti
-                        placeholder='doc. justificativos'
-                        className='w-[80%] capitalize'
-                        options={optionsJustificativos}
-                        onChange={(e) => setJustificativos(e)}
-                        value={justificativos}
                     />
 
                     <div className='w-full flex gap-5 items-center'>
                         <Select 
+                            menuPlacement='auto'
                             isSearchable={false}
                             className='w-[60%] capitalize'
                             placeholder={fuenteAdmin !== '' ? fuenteAdmin : 'fuente administrativa'}
@@ -130,38 +126,38 @@ export default function RectPropietario() {
                             onChange={(e) => setNumFuenteAdmin(e.target.value)}
                         />
                     </div>
+                    
+                    <div className='flex gap-3'>
+                        <input 
+                            value={fecha ? fecha : ''}
+                            className='w-[35%] h-[35px] uppercase  border border-gray-500 rounded-md p-2'
+                            label='fecha'
+                            type='date'
+                            onChange={(e) => setFecha(e.target.value)}
+                        />
+                        <input 
+                            value={emisor ? emisor : ''}
+                            className='h-[35px] w-[65%] capitalize border border-gray-500 rounded-md p-2'
+                            placeholder='ente emisor'
+                            onChange={(e) => setEmisor(e.target.value.toLocaleLowerCase())}
+                        />
+                    </div>
 
-                    <input 
-                        value={fecha ? fecha : ''}
-                        className='w-[39%] h-[35px] uppercase  border border-gray-500 rounded-md p-2'
-                        label='fecha'
-                        type='date'
-                        onChange={(e) => setFecha(e.target.value)}
-                    />
+                    <DocJustifica docSelecc={docSelecc} setDocSelecc={setDocSelecc} />
 
-                    <input 
-                        value={emisor ? emisor : ''}
-                        className='h-[35px] w-[80%] capitalize border border-gray-500 rounded-md p-2'
-                        placeholder='ente emisor'
-                        onChange={(e) => setEmisor(e.target.value.toLocaleLowerCase())}
-                    />
+                    <div className='flex items-center gap-6 '>
+                        <DocRectifica checkSelecc={checkSelecc} setCheckSelecc={setCheckSelecc} />
+                        <input 
+                            type='number'
+                            value={fmi ? fmi : ''}
+                            className='h-[35px] w-[35%] capitalize border border-gray-500 rounded-md p-2 text-center'
+                            placeholder='FMI'
+                            onChange={(e) => setFmi(e.target.value)}
+                        />
+                    </div>
 
-                    <input 
-                        type='number'
-                        value={fmi ? fmi : ''}
-                        className='h-[35px] w-[35%] capitalize border border-gray-500 rounded-md p-2 text-center'
-                        placeholder='FMI'
-                        onChange={(e) => setFmi(e.target.value)}
-                    />
 
-                    <Select 
-                        menuPlacement='auto'
-                        className='w-[80%] capitalize'
-                        isMulti
-                        options={optionsRect}
-                    />
-
-                    <div className='flex items-center gap-5'>
+                    <div className='flex justify-evenly items-center p-1'>
                         <Button
                             size='sm'
                             color='orange'
@@ -208,18 +204,18 @@ export default function RectPropietario() {
                         adscrita a la Secretaria de Planeación del municipio de Montería, el trámite 
                         catastral correspondiente a rectificación general de datos del referido predio, 
                         soportada en los siguientes documentos 
-                        justificativos: <span className='text-red-500'>{docJusti.join(', ')}, </span>
-                        <span className='text-red-500 capitalize'>{fuenteAdmin} No. {numFuenteAdmin} </span>  
+                        aportados: 
+                        <span className='text-red-500 capitalize'> {fuenteAdmin} No. {numFuenteAdmin} </span>  
                         del <span className='text-red-500'>{fecha}</span> de (la) 
                         <span className='text-red-500 capitalize'> {emisor}</span>, 
-                        debidamente registrada en el folio de matrícula inmobiliaria  
-                        <span className='text-red-500'> 140 - {fmi}</span>.
+                        <span className='text-red-500'> {docSelecc.sort().join(', ')}</span>.
                     </span>
                     <br/><br/>
                     <span>
-                        Que de acuerdo al estudio de los documentos jurídicos se verifica por parte del 
-                        operador que procede un trámite consistente a una 
-                        rectificación de (la)
+                        De acuerdo al estudio realizado, se procede a rectificar el(la) 
+                        <span className='capitalize text-red-500'> {checkSelecc.join(', ')} </span>
+                        del predio en mención, soportada en el certificado tradición y
+                        libertad 140- <span className='text-red-500'>{fmi}</span>.
                     </span>
                     <br/><br/>
                     <span>
@@ -227,8 +223,9 @@ export default function RectPropietario() {
                         documentación aportada por el(la) solicitante, así como la validación correspondiente a 
                         través de la aplicación combinada de métodos INDIRECTO y DECLARATIVO - COLABORATIVO, 
                         en los términos del artículo 2.2.2.2.6. del Decreto 1170 de 2015, modificado por el 
-                        Decreto 148 de 2020, que procede la rectificación de la Cedula de Ciudadanía y del 
-                        folio de matrícula inmobiliaria, del presente acto y su correspondiente inscripción 
+                        Decreto 148 de 2020, que procede la rectificación de(la)  
+                        <span className='capitalize text-red-500'> {checkSelecc.join(', ')}</span>
+                        , del presente acto y su correspondiente inscripción 
                         en el catastro, conforme lo indican en los artículos 4.5.4 y 4.6.8 de la Resolución 1040 
                         de 2023, en concordancia del artículo 2.2.2.2.2 literal C del 1170 de 2015, modificado 
                         por el Decreto 148 de 2020.
