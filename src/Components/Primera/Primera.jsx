@@ -18,7 +18,7 @@ export default function Primera() {
         if(solicitante === 'propietario') return <PrimeraPropietario />
         if(solicitante === 'autorizado') return <PrimeraAutorizado />
         if(solicitante === 'con poder') return <PrimeraPoder />
-        if(solicintante === 'repre. legal') return <PrimeraRepreLegal />
+        if(solicitante === 'repre. legal') return <PrimeraRepreLegal />
     }
     
     return (

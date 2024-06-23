@@ -1,22 +1,24 @@
-import numeral from 'numeral'
-import './rectpropietario.css'
 import { Button, Typography } from '@material-tailwind/react'
+import numeral from 'numeral'
 import React, { useRef, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import Select from 'react-select'
-import ArticulosRect from '../ArticulosRect/ArticulosRect'
 import DocJustifica from '../DocJustifica/DocJustifica'
 import DocRectifica from '../DocRectifica/DocRectifica'
+import ArticulosRect from '../ArticulosRect/ArticulosRect'
 
-export default function RectPropietario() {
+export default function RectAutorizado() {
 
-    const movitvada = useRef()
-    const [ nombre, setNombre ] = useState('')
+    const motivada = useRef()
+    const [ nombreAut, setNombreAut ] = useState('')
+    const [ tipoDocAut, setTipoDocAut ] = useState('')
+    const [ numDocAut, setNumDocAut ] = useState('')
+	const [ nombre, setNombre ] = useState('')
     const optionsTipoDoc = ['cc', 'ti', 'ce','nit'].sort().map( item => ({value: item, label: item}))
     const [ tipoDoc, setTipoDoc ] = useState('')
     const [ numDoc, setNumDoc ] = useState('')
     const [ npn, setNpn ] = useState('')
-    const optionsFuenteAdmin = ['resolucion', 'documento publico','escritura publica','sentencia judicial','acto administrativo','sin documento','documento privado'].sort().map(item => ({value: item, label: item}))
+    const optionsFuenteAdmin = ['documento publico','escritura publica','sentencia judicial','acto administrativo','sin documento','documento privado'].sort().map(item => ({value: item, label: item}))
     const [ fuenteAdmin, setFuenteAdmin ] = useState('')
     const [ numFuenteAdmin, setNumFuenteAdmin ] = useState('')
     const [ fecha, setFecha ] = useState('')
@@ -26,9 +28,12 @@ export default function RectPropietario() {
     const [ checkSelecc, setCheckSelecc ] = useState([])
 
 
-
+    // console.log(textoOk.current.innerText)
 
     const handleLimpiar = () => {
+        setNombreAut('')
+        setTipoDocAut('')
+        setNumDocAut('')
         setNombre('')
         setTipoDoc('')
         setNumDoc('')
@@ -42,25 +47,29 @@ export default function RectPropietario() {
         setCheckSelecc([])
     }
 
+
     const handleCopiar = () => {
-        let texto = movitvada?.current?.innerText
+        let texto = motivada?.current?.innerText
         let data = {
-            nombre: nombre,
-            'tipo de documento': tipoDoc,
-            '# de documento': numDoc,
+            'nombre autorizado':nombreAut,
+            'tipo Doc. autorizado': tipoDocAut,
+            '# Doc. autorizado':numDocAut,
+            'nombre propietario': nombre,
+            'tipo Doc. propietario': tipoDoc,
+            '# Doc. propietario': numDoc,
             'numero predial nacional': npn,
-            'fuente administrativa': fuenteAdmin,
-            '# fuente administrativa': numFuenteAdmin,
+            'fuente Administrativa': fuenteAdmin,
+            '# de Fuente Administrativa': numFuenteAdmin,
             fecha: fecha,
             emisor: emisor,
             'documentos aportados': docSelecc,
             'rectificacion': checkSelecc,
-            'folio matricula inmobiliaria': fmi,
+            'folio matricula inmobiliaria': fmi
         } 
 
         for( let item in data){
             if( data[item] === '' || data[item].length === 0){
-                return toast.error(`debes ingresar ${item}`, {duration: 1300, style:{textTransform: 'capitalize', textAlign: 'center'}})
+                return toast.error(`debes ingresar ${item}`, {duration: 1000, style:{textTransform: 'capitalize', textAlign: 'center'}})
             }
             }
         navigator.clipboard.writeText(texto.trim())
@@ -72,52 +81,79 @@ export default function RectPropietario() {
     };
 
     return (
-        <div className='w-full h-[78vh] flex '>
+        <div className='flex h-[78vh] '>
+            
+            <div className='w-[40%] flex justify-center items-center border border-gray-300'>
 
-            <div className='flex justify-center items-center border border-gray-500'>
-                <div className='flex flex-col p-2 gap-3  max-h-[100%] overflow-y-auto'>
+                <div className='opciones'>               
+                    <input 
+                        value={nombreAut ? nombreAut : ''}
+                        placeholder='nombre autorizado'
+                        className='h-[35px] w-[80%] capitalize  border border-gray-500 rounded-md p-2'
+                        onChange={(e) => setNombreAut(e.target.value)}
+                    />
+
+                    <div className='flex justify-center items-center gap-6'>
+                        <Select
+                            isSearchable={false}
+                            className='w-[50%] uppercase'
+                            placeholder={tipoDocAut !== '' ? tipoDocAut : 'doc. aut'}
+                            options={optionsTipoDoc}
+                            onChange={(e) => setTipoDocAut(e.value)}
+                            value={tipoDocAut}
+                        />
+
+                        <input 
+                            value={numDocAut ? numDocAut : ''}
+                            placeholder='# doc. autorizado'
+                            type='number'
+                            className='h-[35px] w-[50%] capitalize border border-gray-500 rounded-md p-2 text-center'
+                            onChange={(e) => setNumDocAut(e.target.value)}
+                        />  
+                    </div>
+
                     <input 
                         value={nombre ?nombre : ''}
-                        placeholder='NOMBRE'
+                        placeholder='nombre propietario'
                         className='h-[35px] w-[80%] capitalize  border border-gray-500 rounded-md p-2'
                         onChange={(e) => setNombre(e.target.value)}
                     />
 
-                    <div className='w-full  flex items-center gap-6'>
+                    <div className='flex justify-center items-center gap-6'>
                         <Select
                             isSearchable={false}
-                            className='w-[40%] uppercase'
+                            className='w-[50%] uppercase'
+                            placeholder={tipoDoc !== '' ? tipoDoc : 'doc. propietario'}
                             options={optionsTipoDoc}
                             onChange={(e) => setTipoDoc(e.value)}
-                            placeholder={tipoDoc !== '' ? tipoDoc : 'documento'}
                             value={tipoDoc}
                         />
 
                         <input 
+                            value={numDoc ? numDoc : ''}
+                            placeholder='# doc. propietario'
                             type='number'
-                            value={numDoc ?numDoc : ''}
-                            placeholder='# documento'
-                            className='h-[35px] w-[35%] capitalize  border border-gray-500 rounded-md p-2 text-center'
+                            className='h-[35px] w-[50%] capitalize border border-gray-500 rounded-md p-2 text-center'
                             onChange={(e) => setNumDoc(e.target.value)}
-                        />
+                        />  
                     </div>
 
                     <input 
-                        value={npn ?npn : ''}
+                        value={npn ? npn : ''}
                         placeholder='NPN'
-                        className='h-[35px] w-[80%] capitalize  border border-gray-500 rounded-md p-2 text-center'
+                        className='h-[35px] w-[80%]  border border-gray-500 rounded-md p-2 text-center'
                         onChange={(e) => setNpn(e.target.value)}
-                    />
-
+                        />
+                    
                     <div className='w-full flex gap-5 items-center'>
                         <Select 
-                            menuPlacement='auto'
                             isSearchable={false}
-                            className='w-[60%] capitalize'
+                            className='capitalize'
                             placeholder={fuenteAdmin !== '' ? fuenteAdmin : 'fuente administrativa'}
                             options={optionsFuenteAdmin}
                             onChange={(e) => setFuenteAdmin(e.value)}
                             value={fuenteAdmin}
+                            menuPlacement='auto'
                         />
                         <input 
                             value={numFuenteAdmin ? numFuenteAdmin : ''}
@@ -126,8 +162,8 @@ export default function RectPropietario() {
                             onChange={(e) => setNumFuenteAdmin(e.target.value)}
                         />
                     </div>
-                    
-                    <div className='flex gap-3'>
+
+                    <div className='flex w-full gap-1'>
                         <input 
                             value={fecha ? fecha : ''}
                             className='w-[35%] h-[35px] uppercase  border border-gray-500 rounded-md p-2'
@@ -145,19 +181,18 @@ export default function RectPropietario() {
 
                     <DocJustifica docSelecc={docSelecc} setDocSelecc={setDocSelecc} />
 
-                    <div className='flex items-center gap-6 '>
+                    <div className='w-full flex gap-3'>
                         <DocRectifica checkSelecc={checkSelecc} setCheckSelecc={setCheckSelecc} />
+
                         <input 
-                            type='number'
                             value={fmi ? fmi : ''}
-                            className='h-[35px] w-[35%] capitalize border border-gray-500 rounded-md p-2 text-center'
+                            className='h-[35px] w-[30%] capitalize border border-gray-500 rounded-md p-2 text-center'
                             placeholder='FMI'
                             onChange={(e) => setFmi(e.target.value)}
                         />
                     </div>
 
-
-                    <div className='flex justify-evenly items-center p-1'>
+                    <div className='w-full flex justify-evenly items-center '>
                         <Button
                             size='sm'
                             color='orange'
@@ -176,18 +211,19 @@ export default function RectPropietario() {
                         </Button>
 
                         <ArticulosRect />
-
                     </div>
 
+                    
                 </div>
             </div>
 
+
             <div 
-                className='w-[65%] p-5 max-h-[100%] overflow-y-auto border border-gray-500'
+                className='w-[65%] p-5 max-h-[100%] overflow-y-auto border border-gray-300'
             >
                 <Typography 
                     className='text-justify font-normal'
-                    ref={movitvada}
+                    ref={motivada}
                 >
                     <span>
                         Que la Resolución 1040 de 2023 del Instituto Geográfico Agustín Codazzi (IGAC), 
@@ -196,10 +232,15 @@ export default function RectPropietario() {
                     </span>
                     <br/><br/>
                     <span>
-                        Que el(la) señor(a) <span className='text-red-500'>{nombre}</span>, identificado(a) 
-                        con <span className='text-red-500 uppercase'>{tipoDoc}. </span> 
-                        No. <span className='text-red-500'>{formatNumber(numDoc)}</span>, en su condición de propietario del inmueble con número 
-                        predial <span className='text-red-500'>{npn}</span>, 
+                        Que el(la) señor(a) <span className='text-red-500'>{nombreAut}</span>, identificado(a) 
+                        con <span className='text-red-500 uppercase'>{tipoDocAut}. </span> 
+                        No. <span className='text-red-500'>{formatNumber(numDocAut)}</span>, 
+                        en su condición de contacto y/o autorizado del (la) señor(a)
+                        <span className='text-red-500 capitalize'> {nombre} </span> identificado(a) con
+                        <span className='text-red-500 uppercase'> {tipoDoc}</span>. 
+                        <span className='text-red-500'> {formatNumber(numDoc)} </span> 
+                        propietario del inmueble identificado con número predial
+                        <span className='text-red-500'> {npn}</span>, 
                         inscrito en la base de datos catastral, presentó ante la Oficina de Catastro 
                         adscrita a la Secretaria de Planeación del municipio de Montería, el trámite 
                         catastral correspondiente a rectificación general de datos del referido predio, 
@@ -212,14 +253,14 @@ export default function RectPropietario() {
                     </span>
                     <br/><br/>
                     <span>
-                        De acuerdo al estudio realizado, se procede a rectificar el(la) 
+                        De acuerdo con el estudio realizado, se procede a rectificar el(la) 
                         <span className='capitalize text-red-500'> {checkSelecc.join(', ')} </span>
                         del predio en mención, soportada en el certificado tradición y
                         libertad 140- <span className='text-red-500'>{fmi}</span>.
                     </span>
                     <br/><br/>
                     <span>
-                        Que revisados los antecedentes catastrales del municipio de Montería, verificada la 
+                        Que, revisados los antecedentes catastrales del municipio de Montería, verificada la 
                         documentación aportada por el(la) solicitante, así como la validación correspondiente a 
                         través de la aplicación combinada de métodos INDIRECTO y DECLARATIVO - COLABORATIVO, 
                         en los términos del artículo 2.2.2.2.6. del Decreto 1170 de 2015, modificado por el 
@@ -233,11 +274,12 @@ export default function RectPropietario() {
                     <br/><br/>
                     <span>
                         Que la rectificación ordenada hace alusión a una corrección simplemente formal, 
-                        la cual no modifica el avalúo catastral del predio objeto de la misma.
+                        la cual no modifica el avalúo catastral del predio objeto de esta.
                     </span>
                 </Typography>
             </div>
-        <Toaster />
+            <Toaster />
         </div>
     )
 }
+

@@ -15,6 +15,7 @@ export default function Inicio() {
         if(tipo === 'rect. gnral de datos') return <Rectificacion />
     }
 
+
     return (
     <div className='inicio'>
         

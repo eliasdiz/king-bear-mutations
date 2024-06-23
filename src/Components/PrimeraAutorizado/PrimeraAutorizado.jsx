@@ -79,7 +79,7 @@ export default function PrimeraAutorizado() {
 return (
     <div className='primeraAutorizado'>
 
-        <div className='w-[40%] flex justify-center items-center border border-gray-300'>
+            <div className='w-[40%] flex justify-center items-center border border-gray-300'>
 
                 <div className='opciones'>               
                     <input 
@@ -209,6 +209,7 @@ return (
                     
                 </div>
             </div>
+            
             <div className='w-[60%] flex justify-center border p-2'>
                     <Typography 
                         className='text-justify font-normal p-3'

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Select from 'react-select'
 import RectPropietario from '../RectPropietario/RectPropietario'
+import RectAutorizado from '../RectAutorizado/RectAutorizado'
 
 
 
@@ -12,9 +13,9 @@ export default function Rectificacion() {
 
     const handleSolicitante = (solicitante) => {
         if(solicitante === 'propietario') return <RectPropietario />
+        if(solicitante === 'autorizado') return <RectAutorizado /> 
         if(solicitante === 'oficio') return 
         if(solicitante === 'snr') return 
-        if(solicitante === 'autorizado') return 
         if(solicitante === 'con poder') return 
     }
 

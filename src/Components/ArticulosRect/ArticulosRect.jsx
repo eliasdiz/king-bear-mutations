@@ -36,7 +36,7 @@ export default function ArticulosRect() {
         >
             <Toaster/>
             <DialogHeader className='capitalize justify-center'>
-                articulos mutacion de primera
+                articulos rectificacion general de datos
             </DialogHeader>
 
             <DialogBody  
