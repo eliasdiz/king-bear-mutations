@@ -51,25 +51,25 @@ export default function PrimeraPoder() {
     const handleCopiar = () => {
         let texto = textoOk?.current?.innerText
         let data = {
-            nombreApode:nombreApode,
-            tipoDocApode: tipoDocApode,
-            numDocApode:numDocApode,
-            tarjProfe: tarjProfe,
-            nombre: nombre,
-            tipoDoc: tipoDoc,
-            numDoc: numDoc,
-            npn: npn,
-            fuenteAdmin: fuenteAdmin,
-            numFuenteAdmin: numFuenteAdmin,
+            'nombre Apoderado':nombreApode,
+            'tipo Doc. Apoderado': tipoDocApode,
+            '# Doc. Apoderado':numDocApode,
+            'tarjeta Profesional': tarjProfe,
+            'nombre propietario': nombre,
+            'tipo Doc. propietario': tipoDoc,
+            '# Doc. propietario': numDoc,
+            'numero predial nacional': npn,
+            'fuente Administrativa': fuenteAdmin,
+            '# de Fuente Administrativa': numFuenteAdmin,
             fecha: fecha,
             emisor: emisor,
-            fmi: fmi,
-            docSelecc: docSelecc
+            'folio matricula inmobiliaria': fmi,
+            'documentos aportados': docSelecc
         } 
 
         for( let item in data){
             if( data[item] === '' || data[item].length === 0){
-                return toast.error(`debes ingresar ${item}`, {duration: 1000, style:{textTransform: 'capitalize'}})
+                return toast.error(`debes ingresar ${item}`, {duration: 1300, style:{textTransform: 'capitalize', textAlign: 'center'}})
             }
             }
         navigator.clipboard.writeText(texto.trim())

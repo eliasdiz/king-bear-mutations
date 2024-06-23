@@ -5,7 +5,7 @@ import toast, { Toaster } from 'react-hot-toast'
 export default function DocJustifica({docSelecc,setDocSelecc}) {
 
     const [ open, setOpen ] = useState(false)
-    const optionsDocJusti = ['cedula','acta de defuncion','registro civil','planos','solicitud','certificado tradicion y libertad'].sort()
+    const optionsDocJusti = ['cedula','acta de defuncion','registro civil','planos','solicitud','cert. tradicion y libertad'].sort()
     const [ docJusti, setDocJusti ] = useState(optionsDocJusti || [] )
     const [ docIngresado, setDocIngresado ] = useState('')
 

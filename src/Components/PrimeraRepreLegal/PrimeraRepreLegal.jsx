@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import './primeraautorizado.css'
+import './primerareprelegal.css'
 import { Button, Typography } from '@material-tailwind/react'
 import Select from 'react-select'
 import toast, { Toaster } from 'react-hot-toast'
@@ -7,7 +7,7 @@ import numeral from 'numeral'
 import ArticulosPrimera from '../ArticulosPrimera/ArticulosPrimera'
 import DocJustifica from '../DocJustifica/DocJustifica'
 
-export default function PrimeraAutorizado() {
+export default function PrimeraRepreLegal() {
 
     const [ nombreAut, setNombreAut ] = useState('')
     const [ tipoDocAut, setTipoDocAut ] = useState('')
@@ -27,7 +27,6 @@ export default function PrimeraAutorizado() {
     const [ docSelecc, setDocSelecc ] = useState([])
 
 
-    // console.log(textoOk.current.innerText)
 
     const handleLimpiar = () => {
         setNombreAut('')
@@ -48,15 +47,15 @@ export default function PrimeraAutorizado() {
     const handleCopiar = () => {
         let texto = textoOk?.current?.innerText
         let data = {
-            'nombre autorizado':nombreAut,
-            'tipo Doc. autorizado': tipoDocAut,
-            '# Doc. autorizado':numDocAut,
+            'nombre repre. legal': nombreAut,
+            'tipo de documento repre. legal': tipoDocAut,
+            '# documento repre. legal': numDocAut,
             'nombre propietario': nombre,
-            'tipo Doc. propietario': tipoDoc,
-            '# Doc. propietario': numDoc,
+            'tipo documento propietario': tipoDoc,
+            '# documento propietario': numDoc,
             'numero predial nacional': npn,
-            'fuente Administrativa': fuenteAdmin,
-            '# de Fuente Administrativa': numFuenteAdmin,
+            'fuente administrativa': fuenteAdmin,
+            '# fuente administrativa': numFuenteAdmin,
             fecha: fecha,
             emisor: emisor,
             'folio matricula inmobiliaria': fmi,
@@ -65,7 +64,7 @@ export default function PrimeraAutorizado() {
 
         for( let item in data){
             if( data[item] === '' || data[item].length === 0){
-                return toast.error(`debes ingresar ${item}`, {duration: 1000, style:{textTransform: 'capitalize'}})
+                return toast.error(`debes ingresar ${item}`, {duration: 1300, style:{textTransform: 'capitalize', textAlign: 'center'}})
             }
             }
         navigator.clipboard.writeText(texto.trim())
@@ -76,15 +75,16 @@ export default function PrimeraAutorizado() {
         return numeral(number).format('0,0').replace(/,/g, '.');
     };
 
-return (
-    <div className='primeraAutorizado'>
+
+    return (
+        <div className='primera-repreLegal'>
 
         <div className='w-[40%] flex justify-center items-center border border-gray-300'>
 
                 <div className='opciones'>               
                     <input 
                         value={nombreAut ? nombreAut : ''}
-                        placeholder='nombre autorizado'
+                        placeholder='nombre representante legal'
                         className='h-[35px] w-[80%] capitalize  border border-gray-500 rounded-md p-2'
                         onChange={(e) => setNombreAut(e.target.value)}
                     />
@@ -93,7 +93,7 @@ return (
                         <Select
                             isSearchable={false}
                             className='w-[50%] uppercase'
-                            placeholder={tipoDocAut !== '' ? tipoDocAut : 'doc. aut'}
+                            placeholder={tipoDocAut !== '' ? tipoDocAut : 'doc. repre. legal'}
                             options={optionsTipoDoc}
                             onChange={(e) => setTipoDocAut(e.value)}
                             value={tipoDocAut}
@@ -101,7 +101,7 @@ return (
 
                         <input 
                             value={numDocAut ? numDocAut : ''}
-                            placeholder='# doc. autorizado'
+                            placeholder='# doc. repre. legal'
                             type='number'
                             className='h-[35px] w-[50%] capitalize border border-gray-500 rounded-md p-2 text-center'
                             onChange={(e) => setNumDocAut(e.target.value)}
@@ -217,10 +217,10 @@ return (
                         <span>
                             Que el(la) señor(a) <span className='text-red-500 capitalize'>{nombreAut} </span>  
                             identificado(a) con <span className='text-red-500 uppercase'>{tipoDocAut}</span>. 
-                            NO. <span className='text-red-500'>{formatNumber(numDocAut)}</span>,
-                            en su condición de contacto y/o autorizado del (la) señor(a)
+                            No. <span className='text-red-500'>{formatNumber(numDocAut)}</span>,
+                            en su condición de representante legal del (la) señor(a)
                             <span className='text-red-500 capitalize'> {nombre} </span> identificado(a) con
-                            <span className='text-red-500 uppercase'> {tipoDoc}</span>. 
+                            <span className='text-red-500 uppercase'> {tipoDoc}</span>. No 
                             <span className='text-red-500'> {formatNumber(numDoc)} </span>
                             propietario del inmueble identificado con número predial
                             <span className='text-red-500'> {npn}</span>, inscrito en la base de datos catastral 
@@ -250,5 +250,5 @@ return (
             </div>
             <Toaster />
     </div>
-)
+    )
 }

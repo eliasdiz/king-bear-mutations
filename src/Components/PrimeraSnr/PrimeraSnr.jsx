@@ -35,19 +35,19 @@ export default function PrimeraSnr() {
     const handleCopiar = () => {
         let texto = textoOk?.current?.innerText
         let data = {
-            añoRadicado: añoRadicado,
-            radicado: radicado,
-            npn: npn,
-            fuenteAdmin: fuenteAdmin,
-            numFuenteAdmin: numFuenteAdmin,
+            'año Radicado': añoRadicado,
+            '# de radicado': radicado,
+            'numero predial nacional': npn,
+            'fuente Administrativa': fuenteAdmin,
+            '# Fuente Administrativa': numFuenteAdmin,
             fecha: fecha,
             emisor: emisor,
-            fmi: fmi
+            'folio matricula inmobiliaria': fmi
         } 
 
         for( let item in data){
             if( data[item] === ''){
-                return toast.error(`debes ingresar ${item}`, {duration: 1000})
+                return toast.error(`debes ingresar ${item}`, {duration: 1000, style:{textAlign: 'center', textTransform: 'capitalize'}})
             }
             }
         navigator.clipboard.writeText(texto.trim())
@@ -72,7 +72,7 @@ export default function PrimeraSnr() {
                             value={radicado ? radicado : ''}
                             placeholder='# radicado'
                             type='number'
-                            className='h-[35px] w-[7rem] capitalize border border-gray-500 rounded-md p-2'
+                            className='h-[35px] w-[7rem] capitalize border border-gray-500 rounded-md p-2 text-center'
                             onChange={(e) => setRadicado(e.target.value)}
                         />  
                     </div>
@@ -80,7 +80,7 @@ export default function PrimeraSnr() {
                     <input 
                         value={npn ? npn : ''}
                         placeholder='NPN'
-                        className='h-[35px] w-[80%]  border border-gray-500 rounded-md p-2'
+                        className='h-[35px] w-[80%]  border border-gray-500 rounded-md p-2 text-center'
                         onChange={(e) => setNpn(e.target.value)}
                         />
                     
@@ -95,7 +95,7 @@ export default function PrimeraSnr() {
                         />
                         <input 
                             value={numFuenteAdmin ? numFuenteAdmin : ''}
-                            className='h-[35px] w-[25%] uppercase  border border-gray-500 rounded-md p-2'
+                            className='h-[35px] w-[25%] uppercase  border border-gray-500 rounded-md p-2 text-center'
                             placeholder='N°'
                             onChange={(e) => setNumFuenteAdmin(e.target.value)}
                         />
@@ -111,14 +111,14 @@ export default function PrimeraSnr() {
 
                     <input 
                         value={emisor ? emisor : ''}
-                        className='h-[35px] w-[80%] capitalize border border-gray-500 rounded-md p-2'
+                        className='h-[35px] w-[80%] capitalize border border-gray-500 rounded-md p-2 text-center'
                         placeholder='ente emisor'
                         onChange={(e) => setEmisor(e.target.value.toLocaleLowerCase())}
                     />
 
                     <input 
                         value={fmi ? fmi : ''}
-                        className='h-[35px] w-[40%] capitalize border border-gray-500 rounded-md p-2'
+                        className='h-[35px] w-[40%] capitalize border border-gray-500 rounded-md p-2 text-center'
                         placeholder='FMI'
                         onChange={(e) => setFmi(e.target.value)}
                     />

@@ -43,21 +43,21 @@ export default function PrimeraPropietario() {
     const handleCopiar = () => {
         let texto = textoOk?.current?.innerText
         let data = {
-            nombre: nombre,
-            tipoDoc: tipoDoc,
-            numDoc: numDoc,
-            npn: npn,
-            fuenteAdmin: fuenteAdmin,
-            numFuenteAdmin: numFuenteAdmin,
+            'nombre propietario': nombre,
+            'tipo documento propietario': tipoDoc,
+            '# documento propietario': numDoc,
+            'numero predial nacional': npn,
+            'fuente administrativa': fuenteAdmin,
+            '# fuente administrativa': numFuenteAdmin,
             fecha: fecha,
             emisor: emisor,
-            fmi: fmi,
-            docSelecc: docSelecc
+            'folio matricula inmobiliaria': fmi,
+            'documentos aportados': docSelecc
         } 
 
         for( let item in data){
             if( data[item] === '' || data[item].length === 0){
-                return toast.error(`debes ingresar ${item}`, {duration: 1000, style:{textTransform: 'capitalize'}})
+                return toast.error(`debes ingresar ${item}`, {duration: 1300, style:{textTransform: 'capitalize', textAlign: 'center'}})
             }
             }
         navigator.clipboard.writeText(texto.trim())

@@ -1,0 +1,12 @@
+.primera-repreLegal {
+    display: flex;
+    justify-content: space-evenly;
+}
+.opciones {
+    width: 85%;
+    /* border: 1px solid green; */
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    gap: 8px;
+}
