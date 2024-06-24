@@ -2,18 +2,20 @@ import React, { useState } from 'react'
 import Select from 'react-select'
 import RectPropietario from '../RectPropietario/RectPropietario'
 import RectAutorizado from '../RectAutorizado/RectAutorizado'
+import RectRepreLegal from '../RectRepreLegal/RectRepreLegal'
 
 
 
 
 export default function Rectificacion() {
 
-    const solicitanteOptions = [ 'oficio','autorizado','con poder','propietario','snr'].sort().map(item => ({value: item, label: item}))
+    const solicitanteOptions = [ 'oficio','autorizado','con poder','propietario','snr','repre. legal'].sort().map(item => ({value: item, label: item}))
     const [ solicintante, setSolicitante ] = useState('') 
 
     const handleSolicitante = (solicitante) => {
         if(solicitante === 'propietario') return <RectPropietario />
         if(solicitante === 'autorizado') return <RectAutorizado /> 
+        if(solicitante === 'repre. legal') return <RectRepreLegal />
         if(solicitante === 'oficio') return 
         if(solicitante === 'snr') return 
         if(solicitante === 'con poder') return 
