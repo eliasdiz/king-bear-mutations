@@ -9,7 +9,7 @@ import RectRepreLegal from '../RectRepreLegal/RectRepreLegal'
 
 export default function Rectificacion() {
 
-    const solicitanteOptions = [ 'oficio','autorizado','con poder','propietario','snr','repre. legal'].sort().map(item => ({value: item, label: item}))
+    const solicitanteOptions = [ 'autorizado','propietario','repre. legal'].sort().map(item => ({value: item, label: item}))
     const [ solicintante, setSolicitante ] = useState('') 
 
     const handleSolicitante = (solicitante) => {
