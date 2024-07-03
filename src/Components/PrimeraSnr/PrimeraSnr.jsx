@@ -7,8 +7,6 @@ import ArticulosPrimera from '../ArticulosPrimera/ArticulosPrimera'
 
 export default function PrimeraSnr() {
 
-    const optionsAñoRadicado = ['2023','2024'].map(item => ({value: item, label: item}))
-    const [ añoRadicado, setAñoRadicado ] = useState('2024')
     const [ radicado, setRadicado ] = useState('')
     const [ npn, setNpn ] = useState('')
     const optionsFuenteAdmin = ['documento publico','escritura publica','sentencia judicial','acto administratico','sin documento','documento privado'].sort().map(item => ({value: item, label: item}))
@@ -23,7 +21,6 @@ export default function PrimeraSnr() {
 
     const handleLimpiar = () => {
         setRadicado('')
-        setAñoRadicado('')
         setNpn('')
         setFuenteAdmin('')
         setNumFuenteAdmin('')
@@ -35,7 +32,6 @@ export default function PrimeraSnr() {
     const handleCopiar = () => {
         let texto = textoOk?.current?.innerText
         let data = {
-            'año Radicado': añoRadicado,
             '# de radicado': radicado,
             'numero predial nacional': npn,
             'fuente Administrativa': fuenteAdmin,
@@ -58,31 +54,23 @@ export default function PrimeraSnr() {
         <div className='primeraSnr'>
 
             <div className='w-[40%] flex justify-center items-center border border-gray-300'>
-                <div className='opciones'>                
-                    <div className='flex justify-center items-center gap-6'>
-                        <Select 
-                            isSearchable={false}
-                            options={optionsAñoRadicado}
-                            className='w-[9rem] uppercase'
-                            placeholder={añoRadicado !== '' ? añoRadicado : 'año'}
-                            onChange={(e) => setAñoRadicado(e.value)}
-                            value={añoRadicado}
-                        />
+                <div className='opciones'>       
+                
+                    <div className='w-full flex justify-center items-center gap-3'>
                         <input 
                             value={radicado ? radicado : ''}
                             placeholder='# radicado'
                             type='number'
-                            className='h-[35px] w-[7rem] capitalize border border-gray-500 rounded-md p-2 text-center'
+                            className='h-[35px] w-[28%] capitalize border border-gray-500 rounded-md p-2 text-center'
                             onChange={(e) => setRadicado(e.target.value)}
                         />  
-                    </div>
-
-                    <input 
-                        value={npn ? npn : ''}
-                        placeholder='NPN'
-                        className='h-[35px] w-[80%]  border border-gray-500 rounded-md p-2 text-center'
-                        onChange={(e) => setNpn(e.target.value)}
+                        <input 
+                            value={npn ? npn : ''}
+                            placeholder='NPN'
+                            className='h-[35px] w-[72%]  border border-gray-500 rounded-md p-2 text-center'
+                            onChange={(e) => setNpn(e.target.value)}
                         />
+                    </div>
                     
                     <div className='w-full flex gap-5 items-center'>
                         <Select 
@@ -156,9 +144,15 @@ export default function PrimeraSnr() {
                             Que teniendo en cuenta la interrelación catastro-registro y la colaboración armónica que entre estas existe, 
                             la superintendencia de notariado y registro del circuito de Montería, suministro información para realizar el debido estudio jurídico,
                             con el fin de inscribir en la base catastral del municipio de Montería, Córdoba las respectivas mutaciones. La oficina de catastro 
-                            radico con el número <span className='text-red-500'>{añoRadicado} - {radicado}</span>, el predio <span className='text-red-500'>{npn}</span>, soportada en los siguientes documentos 
-                            aportados: <span className='text-red-500 capitalize'>{fuenteAdmin} No.{numFuenteAdmin}</span>  del <span className='text-red-500'>{fecha}</span> de (la) <span className='text-red-500 capitalize'>{emisor}</span>, 
-                            debidamente registrada en el folio de matrícula inmobiliaria <span className='text-red-500'>140 - {fmi}</span>.
+                            radico con el número 
+                            <span className='text-red-500'> 2024 - {radicado}</span>, 
+                            el predio <span className='text-red-500'>{npn}</span>, soportada en los siguientes documentos 
+                            aportados: 
+                            <span className='text-red-500 capitalize'> {fuenteAdmin} No.{numFuenteAdmin}</span>  del 
+                            <span className='text-red-500'> {fecha}</span> de (la) 
+                            <span className='text-red-500 capitalize'> {emisor}</span>, 
+                            debidamente registrada en el folio de matrícula inmobiliaria  
+                            <span className='text-red-500'> 140 - {fmi}</span>.
                         </span>
                         <br/><br/>
                         <span>
