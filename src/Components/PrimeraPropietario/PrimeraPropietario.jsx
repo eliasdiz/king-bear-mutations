@@ -68,6 +68,9 @@ export default function PrimeraPropietario() {
         return numeral(number).format('0,0').replace(/,/g, '.');
     };
 
+
+
+
     return (
     <div className='primeraPropietario'>
 
@@ -184,8 +187,14 @@ export default function PrimeraPropietario() {
                         <span>
                             Que el(la) señor(a) <span className='text-red-500 capitalize'>{nombre} </span>  
                             identificado(a) con <span className='text-red-500 uppercase'>{tipoDoc}</span>. 
-                            NO. <span className='text-red-500'>{formatNumber(numDoc)}</span>,
-                            en su condición de propietario del inmueble con número 
+                            NO. 
+                            {
+                                tipoDoc === 'nit' ? 
+                                    <span className='text-red-500'> {formatNumber(numDoc.slice(0,numDoc.length-1))}-{numDoc.slice(numDoc.length-1)}</span>
+                                    :
+                                    <span className='text-red-500'> {formatNumber(numDoc)}</span>
+                            }
+                            , en su condición de propietario del inmueble con número 
                             predial <span className='text-red-500'>{npn}</span>, inscrito en la base de datos 
                             catastral del municipio de Montería, presentó ante la Oficina de atención al público 
                             una solicitud de trámite catastral, consistente en Cambio de propietario. 

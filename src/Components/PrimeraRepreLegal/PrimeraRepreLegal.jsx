@@ -221,7 +221,12 @@ export default function PrimeraRepreLegal() {
                             en su condición de representante legal del (la) señor(a)
                             <span className='text-red-500 capitalize'> {nombre} </span> identificado(a) con
                             <span className='text-red-500 uppercase'> {tipoDoc}</span>. No 
-                            <span className='text-red-500'> {formatNumber(numDoc)} </span>
+                            {
+                                tipoDoc === 'nit' ? 
+                                    <span className='text-red-500'> {formatNumber(numDoc.slice(0,numDoc.length-1))}-{numDoc.slice(numDoc.length-1)} </span>
+                                    :
+                                    <span className='text-red-500'> {formatNumber(numDoc)} </span>
+                            }
                             propietario del inmueble identificado con número predial
                             <span className='text-red-500'> {npn}</span>, inscrito en la base de datos catastral 
                             del municipio de Montería, presentó ante la Oficina de atención al público una solicitud 
