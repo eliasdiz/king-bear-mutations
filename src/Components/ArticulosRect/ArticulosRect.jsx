@@ -55,7 +55,7 @@ export default function ArticulosRect() {
                         </span>
                         <br/><br/>
                         <span>    
-                            ARTÍCULO TERCERO: la notificación de la presente resolución se realizará conforme lo 
+                            ARTÍCULO TERCERO: La notificación de la presente resolución se realizará conforme lo 
                             dispuesto en el inciso 1 y 2 del artículo 4.8.2 de la Resolución 1040 de 2023, del 
                             Instituto Geográfico Agustín Codazzi.
                         </span>
