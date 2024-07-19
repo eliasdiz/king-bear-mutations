@@ -117,8 +117,8 @@ export default function PrimeraSnr() {
 
                         <input 
                             value={anotacion ? anotacion : ''}
-                            className='h-[35px] w-[30%] capitalize border border-gray-500 rounded-md p-2 text-center'
-                            placeholder='anotacion No'
+                            className='h-[35px] w-[35%] capitalize border border-gray-500 rounded-md p-2 text-center'
+                            placeholder='anotacion vur'
                             type='number'
                             onChange={(e) => setAnotacion(e.target.value)}
                         />
