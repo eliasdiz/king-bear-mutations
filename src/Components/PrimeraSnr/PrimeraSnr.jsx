@@ -15,6 +15,7 @@ export default function PrimeraSnr() {
     const [ fecha, setFecha ] = useState('')
     const [ emisor, setEmisor ] = useState('')
     const [ fmi, setFmi ] = useState('')
+    const [ anotacion, setAnotacion ] = useState('')
     const textoOk = useRef()
 
     // console.log(textoOk.current.innerText)
@@ -27,6 +28,7 @@ export default function PrimeraSnr() {
         setFecha('')
         setEmisor('')
         setFmi('')
+        setAnotacion('')
     }
 
     const handleCopiar = () => {
@@ -38,7 +40,8 @@ export default function PrimeraSnr() {
             '# Fuente Administrativa': numFuenteAdmin,
             fecha: fecha,
             emisor: emisor,
-            'folio matricula inmobiliaria': fmi
+            'folio matricula inmobiliaria': fmi,
+            'anotacion vur': anotacion
         } 
 
         for( let item in data){
@@ -104,12 +107,22 @@ export default function PrimeraSnr() {
                         onChange={(e) => setEmisor(e.target.value.toLocaleLowerCase())}
                     />
 
-                    <input 
-                        value={fmi ? fmi : ''}
-                        className='h-[35px] w-[40%] capitalize border border-gray-500 rounded-md p-2 text-center'
-                        placeholder='FMI'
-                        onChange={(e) => setFmi(e.target.value)}
-                    />
+                    <div className='flex w-full gap-4 '>
+                        <input 
+                            value={fmi ? fmi : ''}
+                            className='h-[35px] w-[30%] capitalize border border-gray-500 rounded-md p-2 text-center'
+                            placeholder='FMI'
+                            onChange={(e) => setFmi(e.target.value)}
+                        />
+
+                        <input 
+                            value={anotacion ? anotacion : ''}
+                            className='h-[35px] w-[30%] capitalize border border-gray-500 rounded-md p-2 text-center'
+                            placeholder='anotacion No'
+                            type='number'
+                            onChange={(e) => setAnotacion(e.target.value)}
+                        />
+                    </div>
 
                     <div className='flex items-center gap-5'>
                         <Button
@@ -141,18 +154,22 @@ export default function PrimeraSnr() {
                         ref={textoOk}
                     >
                         <span>
-                            Que teniendo en cuenta la interrelación catastro-registro y la colaboración armónica que entre estas existe, 
-                            la superintendencia de notariado y registro del circuito de Montería, suministro información para realizar el debido estudio jurídico,
-                            con el fin de inscribir en la base catastral del municipio de Montería, Córdoba las respectivas mutaciones. La oficina de catastro 
-                            radico con el número 
-                            <span className='text-red-500'> 2024 - {radicado}</span>, 
-                            el predio <span className='text-red-500'>{npn}</span>, soportada en los siguientes documentos 
-                            aportados: 
-                            <span className='text-red-500 capitalize'> {fuenteAdmin} No.{numFuenteAdmin}</span>  del 
-                            <span className='text-red-500'> {fecha}</span> de (la) 
-                            <span className='text-red-500 capitalize'> {emisor}</span>, 
-                            debidamente registrada en el folio de matrícula inmobiliaria  
-                            <span className='text-red-500'> 140 - {fmi}</span>.
+                            Que teniendo en cuenta la interrelación catastro-registro y la colaboración 
+                            armónica que entre estas existe, 
+                            la superintendencia de notariado y registro del circuito de Montería, suministro 
+                            información para realizar el debido estudio jurídico,con el fin de inscribir 
+                            en la base catastral del municipio de Montería, Córdoba las respectivas mutaciones.
+                            La oficina de catastro radico con el número 
+                            <span className='text-red-500'> 2024 - {radicado}</span>, el predio 
+                            <span className='text-red-500'> {npn}</span>, con el(los) siguiente(s) 
+                            documento(s) aportado(s) por oficina de instrumentos públicos: 
+                            <span className='text-red-500 capitalize'> {fuenteAdmin} No. {numFuenteAdmin} </span>
+                            del <span className='text-red-500'>{fecha}</span> de(la)
+                            <span className='text-red-500 capitalize'> {emisor}</span>
+                            . Que revisada la información vigente en el folio de matrícula inmobiliaria 
+                            <span className='text-red-500'> 140 - {fmi}</span>, se procede a realizar el 
+                            respectivo cambio de propietario de conformidad con la anotación No. 
+                            <span className='text-red-500'> {anotacion}</span>.
                         </span>
                         <br/><br/>
                         <span>
