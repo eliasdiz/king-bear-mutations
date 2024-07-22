@@ -39,7 +39,11 @@ export default function ArticulosPrimera() {
                     articulos mutacion de primera
                 </DialogHeader>
 
-                <DialogBody divider>
+                <DialogBody 
+                    divider
+                    className='max-h-[75vh] overflow-y-auto '
+                
+                >
                     <div className='p-2'>
                         <Typography
                             className='text-justify font-normal'
