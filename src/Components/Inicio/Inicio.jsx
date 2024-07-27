@@ -4,6 +4,7 @@ import { Typography } from '@material-tailwind/react'
 import Select from 'react-select'
 import Primera from '../Primera/Primera'
 import Rectificacion from '../Rectificacion/Rectificacion'
+import GenerarVur from '../GenerarVur/GenerarVur'
 
 export default function Inicio() {
 
@@ -27,15 +28,18 @@ export default function Inicio() {
                 hagamos una mutacion
             </Typography>
 
-            <div className='flex justify-center w-full  p-2'>
-                <Select 
-                    className='w-[15rem] capitalize'
-                    placeholder='tipo de mutacion'
-                    options={tiposMutacionOptions}
-                    isSearchable={false}
-                    isClearable
-                    onChange={(e) => setTipoMutacion(e ? e.value : '')}
-                />
+            <div className='flex w-full gap-5 p-2'>
+                <div className='w-[59%] flex justify-end'>
+                    <Select 
+                        className='w-[15rem] capitalize'
+                        placeholder='tipo de mutacion'
+                        options={tiposMutacionOptions}
+                        isSearchable={false}
+                        isClearable
+                        onChange={(e) => setTipoMutacion(e ? e.value : '')}
+                    />
+                </div>
+                <GenerarVur />
             </div>
         </div>
         
