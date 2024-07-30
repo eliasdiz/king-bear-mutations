@@ -5,7 +5,7 @@ import ComplePropietario from '../ComplePropietario/ComplePropietario'
 
 
 export default function Complementacion() {
-    const solicitanteOptions = [ 'autorizado','propietario','repre. legal','oficio'].sort().map(item => ({value: item, label: item}))
+    const solicitanteOptions = [ 'propietario'].sort().map(item => ({value: item, label: item}))
     const [ solicintante, setSolicitante ] = useState('') 
 
     const handleSolicitante = (solicitante) => {
