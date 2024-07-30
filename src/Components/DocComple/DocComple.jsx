@@ -19,8 +19,7 @@ export default function DocComple({checkSelecc,setCheckSelecc}) {
         <>
             <Button
                 size='sm'
-                className='text-sm'
-                color='brown'
+                className='text-sm bg-pink-200'
                 onClick={handleOpen}
             >
                 complementacion

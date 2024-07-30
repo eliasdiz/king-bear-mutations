@@ -224,7 +224,8 @@ return (
                 <span className='text-red-500 capitalize'> {fuenteAdmin} No. {numFuenteAdmin} </span>  
                 del <span className='text-red-500'>{fecha}</span> de (la) 
                 <span className='text-red-500 capitalize'> {emisor}</span>, 
-                <span className='text-red-500'> {docSelecc.sort().join(', ')}</span>.
+                <span className='text-red-500'> {docSelecc.join(', ')}</span> con folio de matricula inmobiliaria
+                <span className='text-red-500'> 140 - {fmi}</span>.
             </span>
             <br/><br/>
             <span>
