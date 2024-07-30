@@ -43,7 +43,7 @@ export default function DocJustifica({docSelecc,setDocSelecc}) {
                 doc. aportados
             </Button>
 
-            <Dialog open={open} handler={handleOpen}>
+            <Dialog open={open} handler={handleOpen} size='lg'>
             <Toaster />
                 <DialogHeader className='justify-center capitalize '>
                     selecciona los documentos justificativos

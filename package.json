@@ -15,8 +15,10 @@
     "axios": "^1.7.2",
     "creatable": "^3.0.3",
     "html-to-pdfmake": "^2.5.12",
+    "html2pdf.js": "^0.10.2",
     "numeral": "^2.0.6",
     "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^4.5.136",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
@@ -33,6 +35,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "https://www.vur.gov.co",
   "eslintConfig": {
     "extends": [
       "react-app",
