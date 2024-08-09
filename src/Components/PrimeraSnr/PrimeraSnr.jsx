@@ -5,6 +5,9 @@ import Select from 'react-select'
 import toast, { Toaster } from 'react-hot-toast'
 import ArticulosPrimera from '../ArticulosPrimera/ArticulosPrimera'
 
+
+
+
 export default function PrimeraSnr() {
 
     const [ radicado, setRadicado ] = useState('')
