@@ -1,6 +1,8 @@
 import { Button } from '@material-tailwind/react'
 import React from 'react'
 import toast from 'react-hot-toast'
+import { FaRegCopy } from "react-icons/fa6";
+
 
 
 export default function ArticulosPrimera() {
@@ -29,8 +31,10 @@ COMUNÍQUESE Y CÚMPLASE.
                 variant='gradient'
                 color='blue-gray'
                 onClick={handleCopiar}
+                className='flex items-center gap-1 '
             >
                 articulos
+                <FaRegCopy className='w-4 h-4' />
             </Button>
         </>
     )
