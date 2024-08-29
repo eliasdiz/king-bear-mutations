@@ -190,16 +190,17 @@ export default function ComplementacionSnr() {
                         </span>
                         <br/><br/>
                         <span>
-                            Que, en consecuencia, procede una mutación de primera y su correspondiente inscripción en el catastro, conforme lo indican en los 
-                            artículos 4.5.1, y subsiguientes de la Resolución 1040 de 2023, “por la cual se expide la resolución única de la gestión catastral 
-                            multipropósito”, el artículo 4.6.1 y subsiguientes de la resolución 1040 preceptuado en la resolución vigente sobre los requisitos 
-                            para trámites y otros procedimientos administrativos.
+                            Que, revisados los antecedentes catastrales del municipio de Montería, verificada la documentación aportada 
+                            por el(la) solicitante, así como la validación correspondiente a través de la aplicación combinada de métodos
+                            INDIRECTO y DECLARATIVO - COLABORATIVO, en los términos del artículo 2.2.2.2.6. del Decreto 1170 de 2015, 
+                            modificado por el Decreto 148 de 2020, procede a la complementación y su correspondiente inscripción en el 
+                            catastro, conforme lo indican en los artículos 4.5.5 de la Resolución 1040 de 2023, en concordancia del 
+                            artículo 2.2.2.2.2 literal C del 1170 de 2015, modificado por el Decreto 148 de 2020.
                         </span>
                         <br/><br/>
                         <span>
-                            Que, revisados los antecedentes catastrales del municipio de Montería, 
-                            verificada la documentación aportada por el(la) solicitante, procede la mutación de primera y su correspondiente 
-                            inscripción en el catastro.
+                            Que la complementación ordenada hace alusión a una corrección simplemente formal, la cual
+                            no modifica el avalúo catastral del predio objeto de esta.
                         </span>
                     </Typography>
             </div>
