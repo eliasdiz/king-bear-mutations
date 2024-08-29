@@ -41,7 +41,6 @@ export default function Inicio() {
                         onChange={(e) => setTipoMutacion(e ? e.value : '')}
                     />
                 </div>
-                {/* <GenerarVur /> */}
             </div>
         </div>
         

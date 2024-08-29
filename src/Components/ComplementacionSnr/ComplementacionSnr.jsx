@@ -4,6 +4,7 @@ import toast, { Toaster } from 'react-hot-toast'
 import Select from 'react-select'
 import ArticulosRect from '../ArticulosRect/ArticulosRect'
 import DocComple from '../DocComple/DocComple'
+import DocJustifica from '../DocJustifica/DocJustifica'
 
 export default function ComplementacionSnr() {
 
@@ -15,12 +16,11 @@ export default function ComplementacionSnr() {
     const [ fecha, setFecha ] = useState('')
     const [ emisor, setEmisor ] = useState('')
     const [ fmi, setFmi ] = useState('')
-    // const [ anotacion, setAnotacion ] = useState('')
     const textoOk = useRef()
     const [ checkSelecc, setCheckSelecc ] = useState([])
+    const [ docSelecc, setDocSelecc ] = useState([])
 
 
-    // console.log(textoOk.current.innerText)
 
     const handleLimpiar = () => {
         setRadicado('')
@@ -30,8 +30,8 @@ export default function ComplementacionSnr() {
         setFecha('')
         setEmisor('')
         setFmi('')
-        // setAnotacion('')
         setCheckSelecc([])
+        setDocSelecc([])
     }
 
     const handleCopiar = () => {
@@ -43,14 +43,14 @@ export default function ComplementacionSnr() {
             '# Fuente Administrativa': numFuenteAdmin,
             fecha: fecha,
             emisor: emisor,
+            'documentos aportados': docSelecc,
             'folio matricula inmobiliaria': fmi,
             'complementacion': checkSelecc,
-            // 'anotacion vur': anotacion
         } 
 
         for( let item in data){
             if( data[item] === '' || data[item].length === 0){
-                return toast.error(`debes ingresar ${item}`, {duration: 1000, style:{textAlign: 'center', textTransform: 'capitalize'}})
+                return toast.error(`debes ingresar ${item}`, {duration: 1500, style:{textAlign: 'center', textTransform: 'capitalize'}})
             }
             }
         navigator.clipboard.writeText(texto.trim())
@@ -112,24 +112,22 @@ export default function ComplementacionSnr() {
                         onChange={(e) => setEmisor(e.target.value.toLocaleLowerCase())}
                     />
 
-                    <div className='flex w-full gap-6'>
+                    <div className='flex w-full gap-4'>
+                        <div>
+                            <DocJustifica docSelecc={docSelecc} setDocSelecc={setDocSelecc} />
+                        </div>
+
                         <input 
                             type='number'
                             value={fmi ? fmi : ''}
-                            className='h-[35px] w-[20%] capitalize border border-gray-500 rounded-md p-2 text-center'
+                            className='h-[35px] w-[25%] capitalize border border-gray-500 rounded-md p-2 text-center'
                             placeholder='FMI'
                             onChange={(e) => setFmi(e.target.value)}
                         />
 
-                    <DocComple checkSelecc={checkSelecc} setCheckSelecc={setCheckSelecc}  />
-
-                        {/* <input 
-                            value={anotacion ? anotacion : ''}
-                            className='h-[35px] w-[35%] capitalize border border-gray-500 rounded-md p-2 text-center'
-                            placeholder='anotacion vur'
-                            type='number'
-                            onChange={(e) => setAnotacion(e.target.value)}
-                        /> */}
+                        <div>
+                            <DocComple checkSelecc={checkSelecc} setCheckSelecc={setCheckSelecc}  />
+                        </div>
                     </div>
 
                     
@@ -176,24 +174,19 @@ export default function ComplementacionSnr() {
                             circuito de Montería, suministró información para realizar el debido estudio 
                             jurídico,con el fin de inscribir en la base catastral del municipio de Montería, 
                             Córdoba las respectivas mutaciones. La oficina de catastro radico con el número 
-                            <span className='text-red-500'> 2024 - {radicado}</span>, el predio 
+                            <span className='text-red-500'> 2024-{radicado}</span>, el predio 
                             <span className='text-red-500'> {npn}</span>, con el(los) siguiente(s) 
                             documento(s) aportado(s) por oficina de instrumentos públicos: 
                             <span className='text-red-500 capitalize'> {fuenteAdmin} No. {numFuenteAdmin} </span>
                             del <span className='text-red-500'>{fecha}</span> de(la)
-                            <span className='text-red-500 capitalize'> {emisor}</span>
-                            . Que revisada la información vigente en el folio de matrícula inmobiliaria 
-                            <span className='text-red-500'> 140 - {fmi}</span>, se procede a realizar la 
-                            complementacion de(la)
-                            <span className='text-red-500 capitalize'> {checkSelecc.join(', ')} </span>.
-                            {/* de conformidad con la anotación No.  */}
-                            {/* <span className='text-red-500'> {anotacion}</span>. */}
+                            <span className='text-red-500 capitalize'> {emisor}</span>,
+                            <span className='text-red-500'> {docSelecc.sort().join(', ')}</span>
                         </span>
                         <br/><br/>
                         <span>
-                            Que de acuerdo con el estudio de los documentos jurídicos se verifica por parte del 
-                            operador que procede un trámite de complementación de(la) 
-                            <span className='text-red-500 capitalize'> {checkSelecc.join(', ')} </span>
+                            De acuerdo con el estudio de los documentos jurídicos y revisada la información vigente 
+                            en el folio de matrícula inmobiliaria<span className='text-red-500'> 140-{fmi}</span>, 
+                            se procede a realizar la respectiva complementación.
                         </span>
                         <br/><br/>
                         <span>
