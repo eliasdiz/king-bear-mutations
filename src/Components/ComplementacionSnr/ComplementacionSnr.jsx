@@ -10,7 +10,7 @@ export default function ComplementacionSnr() {
 
     const [ radicado, setRadicado ] = useState('')
     const [ npn, setNpn ] = useState('')
-    const optionsFuenteAdmin = ['documento publico','escritura publica','sentencia judicial','acto administratico','sin documento','documento privado'].sort().map(item => ({value: item, label: item}))
+    const optionsFuenteAdmin = ['documento publico','escritura publica','sentencia judicial','acto administrativo','sin documento','documento privado'].sort().map(item => ({value: item, label: item}))
     const [ fuenteAdmin, setFuenteAdmin ] = useState('')
     const [ numFuenteAdmin, setNumFuenteAdmin ] = useState('')
     const [ fecha, setFecha ] = useState('')
