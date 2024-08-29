@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
 import Select from 'react-select'
 import ComplePropietario from '../ComplePropietario/ComplePropietario'
+import ComplementacionSnr from '../ComplementacionSnr/ComplementacionSnr'
 
 
 
 export default function Complementacion() {
-    const solicitanteOptions = [ 'propietario'].sort().map(item => ({value: item, label: item}))
+    const solicitanteOptions = [ 'propietario','snr'].sort().map(item => ({value: item, label: item}))
     const [ solicintante, setSolicitante ] = useState('') 
 
     const handleSolicitante = (solicitante) => {
         if(solicitante === 'propietario') return  <ComplePropietario />
-        // if(solicitante === 'autorizado') return <RectAutorizado /> 
+        if(solicitante === 'snr') return <ComplementacionSnr /> 
         // if(solicitante === 'repre. legal') return <RectRepreLegal />
         // if(solicitante === 'oficio') return <RectOficio />
         if(solicitante === 'snr') return 

@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 
 export default function DocComple({checkSelecc,setCheckSelecc}) {
     const [ open, setOpen ] = useState(false)
-    const optionsRectificacion = ['nomenclatura','nombre','apellido','matricula inmobiliaria','tipo documento','no documento','porcentaje de participacion'].sort()
+    const optionsRectificacion = ['nomenclatura','nombre','apellido','matricula inmobiliaria','tipo de documento','no documento','porcentaje de participacion'].sort()
 
     const handleOpen = () => setOpen(!open)
     
