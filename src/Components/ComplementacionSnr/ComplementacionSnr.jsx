@@ -15,7 +15,7 @@ export default function ComplementacionSnr() {
     const [ fecha, setFecha ] = useState('')
     const [ emisor, setEmisor ] = useState('')
     const [ fmi, setFmi ] = useState('')
-    const [ anotacion, setAnotacion ] = useState('')
+    // const [ anotacion, setAnotacion ] = useState('')
     const textoOk = useRef()
     const [ checkSelecc, setCheckSelecc ] = useState([])
 
@@ -30,7 +30,7 @@ export default function ComplementacionSnr() {
         setFecha('')
         setEmisor('')
         setFmi('')
-        setAnotacion('')
+        // setAnotacion('')
         setCheckSelecc([])
     }
 
@@ -45,7 +45,7 @@ export default function ComplementacionSnr() {
             emisor: emisor,
             'folio matricula inmobiliaria': fmi,
             'complementacion': checkSelecc,
-            'anotacion vur': anotacion
+            // 'anotacion vur': anotacion
         } 
 
         for( let item in data){
@@ -112,7 +112,7 @@ export default function ComplementacionSnr() {
                         onChange={(e) => setEmisor(e.target.value.toLocaleLowerCase())}
                     />
 
-                    <div className='flex w-full gap-4 '>
+                    <div className='flex w-full gap-6'>
                         <input 
                             type='number'
                             value={fmi ? fmi : ''}
@@ -123,13 +123,13 @@ export default function ComplementacionSnr() {
 
                     <DocComple checkSelecc={checkSelecc} setCheckSelecc={setCheckSelecc}  />
 
-                        <input 
+                        {/* <input 
                             value={anotacion ? anotacion : ''}
                             className='h-[35px] w-[35%] capitalize border border-gray-500 rounded-md p-2 text-center'
                             placeholder='anotacion vur'
                             type='number'
                             onChange={(e) => setAnotacion(e.target.value)}
-                        />
+                        /> */}
                     </div>
 
                     
@@ -185,9 +185,9 @@ export default function ComplementacionSnr() {
                             . Que revisada la información vigente en el folio de matrícula inmobiliaria 
                             <span className='text-red-500'> 140 - {fmi}</span>, se procede a realizar la 
                             complementacion de(la)
-                            <span className='text-red-500 capitalize'> {checkSelecc.join(', ')} </span>
-                            de conformidad con la anotación No. 
-                            <span className='text-red-500'> {anotacion}</span>.
+                            <span className='text-red-500 capitalize'> {checkSelecc.join(', ')} </span>.
+                            {/* de conformidad con la anotación No.  */}
+                            {/* <span className='text-red-500'> {anotacion}</span>. */}
                         </span>
                         <br/><br/>
                         <span>
