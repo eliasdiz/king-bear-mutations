@@ -186,7 +186,8 @@ export default function ComplementacionSnr() {
                         <span>
                             De acuerdo con el estudio de los documentos jurídicos y revisada la información vigente 
                             en el folio de matrícula inmobiliaria<span className='text-red-500'> 140-{fmi}</span>, 
-                            se procede a realizar la respectiva complementación.
+                            se procede a realizar la respectiva complementación de(la)
+                            <span className='text-red-500 capitalize'> {checkSelecc.join(', ')}</span>.
                         </span>
                         <br/><br/>
                         <span>
