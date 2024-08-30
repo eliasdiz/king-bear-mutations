@@ -3,7 +3,6 @@ import React, { useRef, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import Select from 'react-select'
 import ArticulosRect from '../ArticulosRect/ArticulosRect'
-import DocComple from '../DocComple/DocComple'
 import DocJustifica from '../DocJustifica/DocJustifica'
 
 export default function ComplementacionSnr() {
@@ -17,7 +16,6 @@ export default function ComplementacionSnr() {
     const [ emisor, setEmisor ] = useState('')
     const [ fmi, setFmi ] = useState('')
     const textoOk = useRef()
-    const [ checkSelecc, setCheckSelecc ] = useState([])
     const [ docSelecc, setDocSelecc ] = useState([])
 
 
@@ -30,7 +28,6 @@ export default function ComplementacionSnr() {
         setFecha('')
         setEmisor('')
         setFmi('')
-        setCheckSelecc([])
         setDocSelecc([])
     }
 
@@ -45,7 +42,6 @@ export default function ComplementacionSnr() {
             emisor: emisor,
             'documentos aportados': docSelecc,
             'folio matricula inmobiliaria': fmi,
-            'complementacion': checkSelecc,
         } 
 
         for( let item in data){
@@ -125,9 +121,6 @@ export default function ComplementacionSnr() {
                             onChange={(e) => setFmi(e.target.value)}
                         />
 
-                        <div>
-                            <DocComple checkSelecc={checkSelecc} setCheckSelecc={setCheckSelecc}  />
-                        </div>
                     </div>
 
                     
@@ -186,8 +179,7 @@ export default function ComplementacionSnr() {
                         <span>
                             De acuerdo con el estudio de los documentos jurídicos y revisada la información vigente 
                             en el folio de matrícula inmobiliaria<span className='text-red-500'> 140-{fmi}</span>, 
-                            se procede a realizar la respectiva complementación de(la)
-                            <span className='text-red-500 capitalize'> {checkSelecc.join(', ')}</span>.
+                            se procede a realizar la respectiva complementación.
                         </span>
                         <br/><br/>
                         <span>
