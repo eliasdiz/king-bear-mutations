@@ -165,15 +165,15 @@ export default function ComplementacionSnr() {
                             Que teniendo en cuenta la interrelación catastro-registro y la colaboración 
                             armónica que entre estas existe, la superintendencia de notariado y registro del 
                             circuito de Montería, suministró información para realizar el debido estudio 
-                            jurídico,con el fin de inscribir en la base catastral del municipio de Montería, 
+                            jurídico, con el fin de inscribir en la base catastral del municipio de Montería, 
                             Córdoba las respectivas mutaciones. La oficina de catastro radico con el número 
                             <span className='text-red-500'> 2024-{radicado}</span>, el predio 
                             <span className='text-red-500'> {npn}</span>, con el(los) siguiente(s) 
-                            documento(s) aportado(s) por oficina de instrumentos públicos: 
+                            documento(s) aportado(s) por la oficina de instrumentos públicos: 
                             <span className='text-red-500 capitalize'> {fuenteAdmin} No. {numFuenteAdmin} </span>
                             del <span className='text-red-500'>{fecha}</span> de(la)
                             <span className='text-red-500 capitalize'> {emisor}</span>,
-                            <span className='text-red-500'> {docSelecc.sort().join(', ')}</span>
+                            <span className='text-red-500'> {docSelecc.sort().join(', ')}</span>.
                         </span>
                         <br/><br/>
                         <span>
