@@ -160,7 +160,7 @@ export default function PrimeraSnr() {
                             Que teniendo en cuenta la interrelación catastro-registro y la colaboración 
                             armónica que entre estas existe, 
                             la superintendencia de notariado y registro del circuito de Montería, suministro 
-                            información para realizar el debido estudio jurídico,con el fin de inscribir 
+                            información para realizar el debido estudio jurídico, con el fin de inscribir 
                             en la base catastral del municipio de Montería, Córdoba las respectivas mutaciones.
                             La oficina de catastro radico con el número 
                             <span className='text-red-500'> 2024 - {radicado}</span>, el predio 
@@ -168,8 +168,11 @@ export default function PrimeraSnr() {
                             documento(s) aportado(s) por oficina de instrumentos públicos: 
                             <span className='text-red-500 capitalize'> {fuenteAdmin} No. {numFuenteAdmin} </span>
                             del <span className='text-red-500'>{fecha}</span> de(la)
-                            <span className='text-red-500 capitalize'> {emisor}</span>
-                            . Que revisada la información vigente en el folio de matrícula inmobiliaria 
+                            <span className='text-red-500 capitalize'> {emisor}</span>.
+                        </span>
+                        <br/><br/>
+                        <span>
+                            Que revisada la información vigente en el folio de matrícula inmobiliaria 
                             <span className='text-red-500'> 140 - {fmi}</span>, se procede a realizar el 
                             respectivo cambio de propietario de conformidad con la anotación No. 
                             <span className='text-red-500'> {anotacion}</span>.
