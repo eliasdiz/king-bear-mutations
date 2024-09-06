@@ -151,7 +151,10 @@ export default function PrimeraSnr() {
                     
                 </div>
             </div>
-            <div className='w-[60%] flex justify-center border p-2'>
+            <div 
+                // className='w-[60%] flex justify-center border border-black p-2 max-h-[100%] overflow-y-auto'
+                className='w-[65%] p-5 max-h-[100%] overflow-y-auto border border-gray-300'
+            >
                     <Typography 
                         className='text-justify font-normal p-2'
                         ref={textoOk}
